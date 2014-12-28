@@ -2,13 +2,12 @@
 #include "Hand.hpp"
 #include "Card.hpp"
 
+
 using namespace std;
 
 Hand::Hand(){
   cout << " -- Nouvelle liste vide --" << endl;
-                         
 }
-
 
 void Hand::addCard(Card &c){
   myHand.push_front(&c);

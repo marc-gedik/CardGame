@@ -2,6 +2,9 @@
 #include "Hand.hpp"
 #include "FrenchSuit.hpp"
 #include "FrenchRank.hpp"
+
+using namespace std;
+
 #include "Deck.hpp"
 #include "FrenchCard.hpp"
 
@@ -33,5 +36,6 @@ int main(){
 
   // cout<<"coucou"<<endl;
   // h.printHand();
+
   return 0;
 }
