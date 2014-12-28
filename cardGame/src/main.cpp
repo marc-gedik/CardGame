@@ -6,7 +6,6 @@ using namespace std;
 #include "FrenchCard.hpp"
 
 int main(){
-<<<<<<< HEAD
   cout << " -- Card Game -- " << endl;
 
   Hand h;
