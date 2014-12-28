@@ -15,6 +15,8 @@ public:
   bool operator==(const Card&) const;
   bool operator> (const Card&) const;
   bool operator>=(const Card&) const;
+
+  void printCard();
 };
 
 #endif

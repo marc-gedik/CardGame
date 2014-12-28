@@ -1,21 +1,25 @@
 #include "Card.hpp"
 
 bool Card::operator< (const Card& card) const{
-  getValue() < card.getValue();
+ return getValue() < card.getValue();
 }
 
 bool Card::operator<=(const Card& card) const{
-  getValue() <= card.getValue();
+return  getValue() <= card.getValue();
 }
 
 bool Card::operator==(const Card& card) const{
-  getValue() == card.getValue();
+ retur getValue() == card.getValue();
 }
 
 bool Card::operator> (const Card& card) const{
-  getValue() > card.getValue();
+  return getValue() > card.getValue();
 }
 
 bool Card::operator>=(const Card& card) const{
-  getValue() >= card.getValue();
+  return getValue() >= card.getValue();
+}
+
+void Card::printCard(){
+  std::cout<<"carte : " << this->getValue() << std::endl;
 }
