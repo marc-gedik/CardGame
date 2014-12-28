@@ -14,26 +14,24 @@ using namespace std;
 int main(){
   cout << " -- Card Game -- " << endl;
 
-  Hand h;
+  Hand<FrenchCard> h;
   FrenchCard f(Hearts, King);
   FrenchCard f2(Hearts, Queen);
 
-  h.addCard(f);
-  h.addCard(f2);
+  h.add(f);
+  h.add(f2);
 
   h.printHand();
-  // h.addCard(67);
-  // h.addCard(16);
-  // h.addCard(14);
-  FrenchCard *c[11] ;
-  c[1]= &f;
-  c[0]= &f2;
-  // h.addCards(c, 11);
 
-  // h.printHand();
-   h.removeCard(1);
-     h.printHand();
+  FrenchCard *c = new FrenchCard [2];
+  c[1]= f;
+  c[0]= f2;
 
+  h.add(c, 2);
+
+  h.printHand();
+  h.remove(1);
+  h.printHand();
   // cout<<"coucou"<<endl;
   // h.printHand();
 

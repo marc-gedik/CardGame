@@ -1,24 +1,41 @@
 #include <list>
 
-#include "Card.hpp"
-
 using namespace std;
 
+template <typename T>
 class Hand {
 
 private:
-  list<Card*> myHand ;
+  list<T> myHand ;
 
-
-  
 public:
 
-  Hand();
-  void addCard(Card &c);
+  Hand(){}
+  void add(T &x){
+    myHand.push_front(x);
+  }
 
-  void addCards(Card *c[], int size);
+  void add(T *xs, int size){
+    for(int i = 0; i < size; i++)
+      myHand.push_front (xs[i]);
+  }
 
-  void removeCard(int position);
-  void printHand();
+  void remove(int position){
+    typename list<T>::iterator it = myHand.begin();
+    if(position< myHand.size()){
+      advance (it,position);
+      myHand.erase(it);
+    }
+  }
+
+  void printHand(){
+    cout<<"taille : " << myHand.size()<<endl;
+    typename list<T>::iterator itCurrent = myHand.begin();
+    typename list<T>::iterator itEnd = myHand.end();
+    while(itCurrent != itEnd){
+      cout <<" carte :: " << "Todo"; //itCurrent;
+      itCurrent++;
+    }
+  }
 };
 
