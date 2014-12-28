@@ -9,7 +9,7 @@ return  getValue() <= card.getValue();
 }
 
 bool Card::operator==(const Card& card) const{
- retur getValue() == card.getValue();
+ return getValue() == card.getValue();
 }
 
 bool Card::operator> (const Card& card) const{
