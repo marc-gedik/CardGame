@@ -17,10 +17,11 @@ main: $(OBJS)
 $(OBJ)%.o: $(SRC)%.cpp $(HPP)%.hpp
 	$(CC) -c -o $@ $<
 
-$(OBJ)SimpleCard.o: $(HPP)Card.hpp
+$(OBJ)SimpleCard.o: $(addprefix $(HPP), Card.hpp)
+$(OBJ)Deck.o: $(addprefix $(HPP), SimpleCard.hpp FrenchCard.hpp)
 
 clean: clear
-	rm main
+	rm -f main
 
 clear:
 	rm -rf $(OBJ)*.o $(SRC)*~ $(HPP)*~

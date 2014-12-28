@@ -3,11 +3,11 @@
 
 template <typename T>
 class Deck {
-private:
+protected:
   T* cards;
 public:
   Deck(int nbrDecks);
-  ~Deck();
+  ~Deck() { delete [] cards; }
 };
 
 #endif

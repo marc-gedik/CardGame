@@ -10,5 +10,6 @@
 template <>
 using FrenchCard = SimpleCard<FrenchSuit, FrenchRank>;
 */
+#define FrenchCard SimpleCard<FrenchSuit, FrenchRank>
 
 #endif

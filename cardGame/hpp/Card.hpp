@@ -1,18 +1,20 @@
 #ifndef H_CARD
 #define H_CARD
 
-#include "Comparable.hpp"
+#include <iostream>
 
-class Card : public Comparable {
+class Card {
+protected:
+  virtual int getValue() const = 0;
 public:
-  virtual bool operator< (const Card&) = 0;
-  virtual bool operator<=(const Card&) = 0;
-  virtual bool operator==(const Card&) = 0;
-  virtual bool operator> (const Card&) = 0;
-  virtual bool operator>=(const Card&) = 0;
+  virtual bool isHidden() const = 0;
+  virtual bool isVisible() const = 0;
 
-  virtual bool isHidden() = 0;
-  virtual bool isVisible() = 0;
+  bool operator< (const Card&) const;
+  bool operator<=(const Card&) const;
+  bool operator==(const Card&) const;
+  bool operator> (const Card&) const;
+  bool operator>=(const Card&) const;
 };
 
 #endif
