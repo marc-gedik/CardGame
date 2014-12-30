@@ -10,7 +10,7 @@ enum FrenchRank {
   Five,
   Six,
   Seven,
-  Height,
+  Eight,
   Nine,
   Ten,
   Jack,

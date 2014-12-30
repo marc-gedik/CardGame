@@ -4,10 +4,17 @@
 template <typename T>
 class Deck {
 protected:
-  T* cards;
+  T** cards;
+  int nbCards;
 public:
   Deck(int nbrDecks);
-  ~Deck() { delete [] cards; }
+  ~Deck() {
+    for(int i = 0; i < nbCards; i++)
+      delete cards[i];
+    delete [] cards;
+  }
+  void shuffle(int);
+
 };
 
 #endif

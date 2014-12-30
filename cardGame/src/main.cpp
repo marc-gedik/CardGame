@@ -8,12 +8,14 @@ using namespace std;
 #include "Deck.hpp"
 #include "FrenchCard.hpp"
 
-using namespace std;
+#include "Player.hpp"
 
 
 int main(){
   cout << " -- Card Game -- " << endl;
 
+  Player();
+  Deck<FrenchCard> d(1);
   Hand<FrenchCard> h;
   FrenchCard f(Hearts, King);
   FrenchCard f2(Hearts, Queen);

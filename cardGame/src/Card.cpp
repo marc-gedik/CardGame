@@ -9,7 +9,7 @@ return  getValue() <= card.getValue();
 }
 
 bool Card::operator==(const Card& card) const{
- return getValue() == card.getValue();
+ return getRealValue() == card.getRealValue();
 }
 
 bool Card::operator> (const Card& card) const{
@@ -20,6 +20,10 @@ bool Card::operator>=(const Card& card) const{
   return getValue() >= card.getValue();
 }
 
-void Card::printCard(){
-  std::cout<<"carte : " << this->getValue() << std::endl;
+ostream& operator<<(ostream& os, Card& c){
+  if(c.isVisible())
+    return c.print(os);
+  else
+    return os << "[";
 }
+

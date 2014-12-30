@@ -1,4 +1,9 @@
+#ifndef H_HAND
+#define H_HAND
+
 #include <list>
+
+#include "Card.hpp"
 
 using namespace std;
 
@@ -33,9 +38,11 @@ public:
     typename list<T>::iterator itCurrent = myHand.begin();
     typename list<T>::iterator itEnd = myHand.end();
     while(itCurrent != itEnd){
-      cout <<" carte :: " << "Todo"; //itCurrent;
+      cout << *itCurrent << " ";
       itCurrent++;
     }
+    cout << endl;
   }
 };
 
+#endif

@@ -8,7 +8,7 @@ enum FrenchSuit {
   Spades
 };
 
-std::ostream& operator<<( std::ostream&, const FrenchSuit&);
+std::ostream& operator<<(std::ostream&, const FrenchSuit&);
 
 extern FrenchSuit frenchSuits[];
 extern int nbrFrenchSuit;

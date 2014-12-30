@@ -2,19 +2,19 @@
 
 #include "FrenchSuit.hpp"
 
-std::ostream& operator<<( std::ostream& os, const FrenchSuit &suit){
+std::ostream& operator<<(std::ostream& os, const FrenchSuit& suit){
   switch(suit){
   case Hearts:
-    os << "Heart";
+    os << "\xE2\x99\xA5";
     break;
   case Diamonds:
-    os << "Diam";
+    os << "\xE2\x99\xA6";
     break;
   case Clubs:
-    os << "Club";
+    os << "\xE2\x99\xA3";
     break;
   case Spades:
-    os << "Spade";
+    os << "\xE2\x99\xA0";
     break;
   }
   return os;
