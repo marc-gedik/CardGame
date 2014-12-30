@@ -3,13 +3,13 @@
 
 #include "FrenchSuit.hpp"
 #include "FrenchRank.hpp"
-#include "SimpleCard.hpp"
+#include "Card.hpp"
 
 //Faire un alias ?
 /*
 template <>
 using FrenchCard = SimpleCard<FrenchSuit, FrenchRank>;
 */
-#define FrenchCard SimpleCard<FrenchSuit, FrenchRank>
+#define FrenchCard Card<FrenchSuit, FrenchRank>
 
 #endif

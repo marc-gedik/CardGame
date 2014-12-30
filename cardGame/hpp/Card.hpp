@@ -5,25 +5,35 @@
 
 using namespace std;
 
+template<typename Suit, typename Rank>
 class Card {
 protected:
-  virtual int getValue() const = 0;
-  virtual int getRealValue() const = 0;
-
-
+  bool hidden;
+  Suit suit;
+  Rank rank;
 public:
-  virtual bool isHidden() const = 0;
-  virtual bool isVisible() const = 0;
-  virtual void flip() = 0;
+  Card() {}
+  Card(Suit s, Rank r, bool hide = false)
+    : suit(s), rank(r), hidden(hide) {}
 
-  bool operator< (const Card&) const;
-  bool operator<=(const Card&) const;
-  bool operator==(const Card&) const;
-  bool operator> (const Card&) const;
-  bool operator>=(const Card&) const;
+  bool isHidden()  const { return hidden; }
+  bool isVisible() const { return !hidden; }
+  void flip() { hidden = !hidden; }
 
-  virtual ostream& print(ostream&) const = 0;
-  friend ostream& operator<<(ostream&, Card&);
+  bool operator< (const Card& card) const { return rank <  card.rank; }
+  bool operator<=(const Card& card) const { return rank <= card.rank; }
+  bool operator> (const Card& card) const { return rank >  card.rank; }
+  bool operator>=(const Card& card) const { return rank >= card.rank; }
+
+  bool operator!=(const Card& card) const { return rank != card.rank || suit != card.suit; }
+  bool operator==(const Card& card) const { return rank == card.rank && suit == card.suit; }
+
+  ostream& print(ostream& os) { return isVisible() ? os << rank << suit : os << "["; }
+
+  friend ostream& operator<<(ostream& os, Card<Suit,Rank>& card){
+    return card.print(os);
+  }
+
 };
 
 #endif

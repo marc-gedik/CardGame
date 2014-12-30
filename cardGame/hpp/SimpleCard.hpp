@@ -8,13 +8,6 @@ using namespace std;
 
 template <typename Suit, typename Rank>
 class SimpleCard : public Card {
-private:
-  bool hidden;
-  Suit suit;
-  Rank rank;
-protected:
-  virtual int getValue() const { return rank; }
-  virtual int getRealValue() const { return rank * suit; }
 public:
   SimpleCard() {}
   SimpleCard(Suit s, Rank r, bool hide = false)
