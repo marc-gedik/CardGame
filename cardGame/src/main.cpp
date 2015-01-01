@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Hand.hpp"
 #include "CardContainer.hpp"
+#include "DiscardPile.hpp"
+#include "Pioche.hpp"
+
 #include "FrenchSuit.hpp"
 #include "FrenchRank.hpp"
 
@@ -49,12 +52,40 @@ int main(){
   cout<<"carte(s) supprimée(s)"<<endl;
   h2.printHand();
 
- FrenchCard *c3 = new FrenchCard [3];
+  FrenchCard *c3 = new FrenchCard [3];
   c[0]= f1;
   c[1]= f2;
-
-  h2.remove(c3,2);
+  //h2.remove(c3,2) ; // problème de seg fault
   h2.printHand();
+
+
+
   
+  cout<<"add sur la pile de défausse"<<endl;
+  DiscardPile<FrenchCard> dis1;
+  FrenchCard *c4 = new FrenchCard [3];
+  c4[0]= f1;
+  c4[1]= f2;
+  c4[2]= f3;
+  dis1.discard(f2);
+  dis1.discard(f3);
+  dis1.discard(f1);
+  dis1.printDiscardPile();
+  CardContainer<FrenchCard> xs2(c, 3);
+
+  dis1.discard(xs2, 3);
+  dis1.printDiscardPile();
+  dis1.removeTop();
+  dis1.printDiscardPile();
+  FrenchCard *c5 = dis1.removeAll();
+ for (int i=0; i<5; i++)
+    cout<<c5[i]<<" - ";
+
+ 
+  dis1.printDiscardPile();
+
+   Pioche<FrenchCard> p1;
+   p1.createPioche(xs2,3);
+   
   return 0;
 }
