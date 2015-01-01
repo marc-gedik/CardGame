@@ -26,7 +26,6 @@ public:
       myHand.push_front (c.getElement(i));
   }
 
-  
   T* remove(int position){
     typename list<T>::iterator it1 = myHand.begin();
     typename list<T>::iterator it2;
@@ -42,20 +41,19 @@ public:
   }
 
 
-  void putInOrder(int tab[], int size){ 
+  void putInOrder(int tab[], int size){
     int tmp=0;
-    for(int i = 1; i < size; i++) { 
-      for(int j=0; j < size - 1; j++)  { 
+    for(int i = 1; i < size; i++) {
+      for(int j=0; j < size - 1; j++)  {
 	if(tab[j]<tab[i]){
 	  tmp = tab[i];
 	  tab[i] = tab[j];
 	  tab[j] = tmp;
-	} 
-      } 
+	}
+      }
     }
   }
 
- 
   T* remove(int *position, int size){
     int j=0;
     bool flag= true;
@@ -77,40 +75,30 @@ public:
     }
     return tabCard;
   }
-  
 
- 
-   
-
-
-   T* remove(T &x){
+  T& remove(T &x){
     typename list<T>::iterator itCurrent = myHand.begin();
     typename list<T>::iterator itEnd = myHand.end();
-        
 
     while(itCurrent != itEnd){
       if( x==*itCurrent){
 	myHand.erase(itCurrent);
-	return &x;
+	return x;
       }
       else
 	itCurrent++;
     }
-    return NULL;
+    throw 22;
   }
-   
 
   T* remove(T*x, int size){
     T* tabCard = new T[size];
     for(int i=0; i<size; i++){
-      tabCard[i]= *(remove(x[i]));
-      cout<<"coucou"<<endl;
-      //tabCard[i]print);
-      }
+      tabCard[i]= (remove(x[i]));
+    }
     return tabCard;
-    
   }
-  
+
   void printHand(){
     //  cout<<"taille : " << myHand.size()<<endl;
     typename list<T>::iterator itCurrent = myHand.begin();
@@ -121,7 +109,6 @@ public:
     }
     cout << endl;
   }
-    
 };
 
 #endif

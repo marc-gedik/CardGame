@@ -26,7 +26,7 @@ int main(){
   h.add(f2);
   h.add(f3);
   h.printHand();
-  h.remove(f2);
+  cout << h.remove(f2);
   h.printHand();
   h.remove(1);
   h.printHand();
@@ -52,10 +52,10 @@ int main(){
   cout<<"carte(s) supprimée(s)"<<endl;
   h2.printHand();
 
-  FrenchCard *c3 = new FrenchCard [3];
+  FrenchCard *c3 = new FrenchCard [2];
   c[0]= f1;
   c[1]= f2;
-  //h2.remove(c3,2) ; // problème de seg fault
+  h2.remove(c3,2) ; // problème de seg fault
   h2.printHand();
 
 
