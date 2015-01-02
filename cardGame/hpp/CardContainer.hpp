@@ -1,39 +1,39 @@
-#ifndef H_CARDCONTAINER
-#define H_CARDCONTAINER
-
-#include "Card.hpp"
-using namespace std;
+#ifndef H_CARD_CONTAINER
+#define H_CARD_CONTAINER
 
 template <typename T>
 class CardContainer {
-
-
 private:
-  T tabCards[512]; // on suppose la taille suffisante
-  int indice;
+  T* tabCards;
+  int size;
 
 public:
 
   CardContainer(){}
-  
+
   CardContainer(T* xs, int nbCard){
-    indice=nbCard;
-    for (int i=0; i<nbCard; i++){
+    size = nbCard;
+    tabCards = new T[size];
+    for (int i=0; i<nbCard; i++)
       tabCards[i]=xs[i];
-    }
   }
 
-  int getIndice(){
-    return indice;
+  CardContainer(T& x){
+    size = 1;
+    tabCards = new T[size];
+    tabCards[0] = x;
+  }
+
+  int getSize(){
+    return size;
   }
 
   T* getTabCards(){
     return tabCards;
   }
 
-  T getElement(int i){
+  T& getElement(int i){
     return tabCards[i];
   }
-  
 };
 #endif

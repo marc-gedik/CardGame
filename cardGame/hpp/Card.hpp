@@ -15,7 +15,9 @@ public:
   Card() {}
   Card(Suit s, Rank r, bool hide = false)
     : suit(s), rank(r), hidden(hide) {}
-
+  ~Card(){
+    //    cout << "Carte detruit";
+  }
   bool isHidden()  const { return hidden; }
   bool isVisible() const { return !hidden; }
   void flip() { hidden = !hidden; }

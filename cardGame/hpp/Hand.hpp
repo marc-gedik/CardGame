@@ -1,13 +1,16 @@
 #ifndef H_HAND
 #define H_HAND
+
 #include <list>
-#include "Card.hpp"
+#include <iostream>
+
+#include "CanAddPile.hpp"
 #include "CardContainer.hpp"
+
 using namespace std;
 
-
 template <typename T>
-class Hand {
+class Hand : public CanAddPile<T> {
 
 private:
   list<T> myHand ;
@@ -16,30 +19,28 @@ public:
 
   Hand(){}
 
-  void add(T &x){
+  virtual void add(T &x){
     myHand.push_front(x);
   }
 
 
-  void add(CardContainer<T> c, int nbCard){
-    for(int i = 0; i < nbCard; i++)
+  virtual void add(CardContainer<T> c){
+    for(int i = 0; i < c.getSize(); i++)
       myHand.push_front (c.getElement(i));
   }
 
-  T* remove(int position){
-    typename list<T>::iterator it1 = myHand.begin();
-    typename list<T>::iterator it2;
+  CardContainer<T> remove(int position){
     if(position< myHand.size()){
+      typename list<T>::iterator it1 = myHand.begin();
+      typename list<T>::iterator it2;
+
       advance (it1,position);
       it2=it1;
       myHand.erase(it1);
-      return &(*it2);
+      return CardContainer<T>(*it2);
     }
-    else{
-      return NULL;
-    }
+    throw 4;
   }
-
 
   void putInOrder(int tab[], int size){
     int tmp=0;
@@ -54,13 +55,13 @@ public:
     }
   }
 
-  T* remove(int *position, int size){
+  CardContainer<T> remove(int *position, int size){
     int j=0;
     bool flag= true;
     T* tabCard;
     typename list<T>::iterator it1 ;
     putInOrder(position, size);
-    for(int i =0; i<size; i++){ 
+    for(int i =0; i<size; i++){
       it1= myHand.begin();
       if(position[i]< myHand.size()){
 	if(flag){
@@ -73,34 +74,35 @@ public:
 	myHand.erase(it1);
       }
     }
-    return tabCard;
+    return CardContainer<T>(tabCard, j);
   }
 
-  T& remove(T &x){
+  CardContainer<T> remove(T &x){
     typename list<T>::iterator itCurrent = myHand.begin();
     typename list<T>::iterator itEnd = myHand.end();
 
     while(itCurrent != itEnd){
       if( x==*itCurrent){
 	myHand.erase(itCurrent);
-	return x;
+	return CardContainer<T>(x);
       }
       else
 	itCurrent++;
     }
-    throw 22;
+    cout << x << " not found" << endl;
+    throw ;
   }
 
-  T* remove(T*x, int size){
+  CardContainer<T> remove(T*x, int size){
     T* tabCard = new T[size];
     for(int i=0; i<size; i++){
+
       tabCard[i]= (remove(x[i]));
     }
-    return tabCard;
+    return CardContainer<T>(tabCard, size);
   }
 
   void printHand(){
-    //  cout<<"taille : " << myHand.size()<<endl;
     typename list<T>::iterator itCurrent = myHand.begin();
     typename list<T>::iterator itEnd = myHand.end();
     while(itCurrent != itEnd){
@@ -108,6 +110,10 @@ public:
       itCurrent++;
     }
     cout << endl;
+  }
+
+  void isEmpty(){
+    myHand.empty();
   }
 };
 

@@ -1,6 +1,8 @@
 #ifndef H_FRENCH_SUIT
 #define H_FRENCH_SUIT
 
+#include <iostream>
+
 enum FrenchSuit {
   Hearts,
   Diamonds,
