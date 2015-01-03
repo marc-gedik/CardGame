@@ -25,7 +25,7 @@ public:
   void countMovingCards(int n){
     if(movingCards.getSize() != n){
       from->add(movingCards);
-      throw IllegalMovement("The number of cards must be : " + n);
+      throw IllegalMovement("The number of cards must be :+ n");
     }
   }
 
