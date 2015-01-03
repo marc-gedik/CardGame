@@ -12,11 +12,16 @@ private:
 
   virtual void printHeader();
   virtual void play();
+
+  void play(int);
+  void giveAllTo(int);
+  void first();
+  void checkBataille();
+
 public:
   Bataille(int nbPlayers) : Game<FrenchCard>(nbPlayers, 1, nbPlayers) {
         initPlayersHand();
-
-}
+  }
 };
 
 #endif

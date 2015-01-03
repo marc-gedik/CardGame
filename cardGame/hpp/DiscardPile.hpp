@@ -35,7 +35,7 @@ public:
     return tmp;
   }
 
-  T* removeAll(){
+  CardContainer<T> removeAll(){
     int size=myDiscardPile.size();
     T* tabCard = new T[size];
 
@@ -43,19 +43,29 @@ public:
       tabCard[i]=myDiscardPile.top();
       myDiscardPile.pop();
     }
-    return tabCard;
+    return CardContainer<T>(tabCard, size);
   }
 
-  void print(){
-    if(myDiscardPile.size()==0)
-      cout<<"Pile vide"<<endl;
-    stack<T> tmp = myDiscardPile;
+  T& look(){
+    return myDiscardPile.top();
+  }
 
-    while(!tmp.empty()){
-      cout << tmp.top() << " ";
-      tmp.pop();
-    }
-    cout<<endl;
+  ostream& print(ostream&os){
+    if(myDiscardPile.size()==0)
+      return os << "Pile vide";
+    else
+      return os << myDiscardPile.top();
+    // stack<T> tmp = myDiscardPile;
+
+    // while(!tmp.empty()){
+    //   os << tmp.top() << " ";
+    //   tmp.pop();
+    // }
+    return os;
+  }
+
+  friend ostream& operator<<(ostream& os, DiscardPile<T> x){
+    return x.print(os);
   }
 };
 

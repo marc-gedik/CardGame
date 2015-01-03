@@ -5,6 +5,9 @@
 #include "Player.hpp"
 #include "Action.hpp"
 
+#include <iostream>
+using namespace std;
+
 template <typename T>
 class Players {
 private:
@@ -50,12 +53,22 @@ public:
   }
 
   void ask(Action<T>& action){
+    cout << "Player " << actual << " : ";
     players[actual].ask(action);
   }
 
   void addCard(int i, T& card){
     players[i].add(card);
   }
+
+  void addCards(int i, CardContainer<T> cards){
+    players[i].add(cards);
+  }
+
+  bool emptyHand(int i){
+    players[i].noCards();
+  }
+
 };
 
 #endif

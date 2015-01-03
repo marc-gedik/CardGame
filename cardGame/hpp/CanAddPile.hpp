@@ -5,7 +5,6 @@
 template<typename T>
 class CanAddPile {
 public:
-  virtual void add(T&) = 0;
   virtual void add(CardContainer<T>) = 0;
 };
 

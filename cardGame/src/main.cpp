@@ -8,5 +8,6 @@ int main(){
 
   Bataille b(2);
   b.run();
+
   return 0;
 }

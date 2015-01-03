@@ -3,18 +3,25 @@
 
 #include "IllegalMovement.hpp"
 #include "CardContainer.hpp"
+#include "CanAddRemovePile.hpp"
+#include "CanAddPile.hpp"
 
 template<typename T>
 class Action {
 private:
-  CanAddPile<T>* from, *to;
+  CanAddRemovePile<T> *from;
+  CanAddPile<T> *to;
   CardContainer<T> movingCards, destination;
+  int* cardsToMove;
+  int nbCardsToMove;
+
 public:
   Action(){}
 
-  void setFrom(CanAddPile<T>* from, CardContainer<T> movingCards){
-    this->movingCards = movingCards;
-    this->destination = destination;
+  void setFrom(CanAddRemovePile<T>* from, int* cardsToMove, int nbCardsToMove){
+    this->cardsToMove = cardsToMove;
+    this->nbCardsToMove = nbCardsToMove;
+    this->from = from;
   }
 
   void setTo(CanAddPile<T>* to, CardContainer<T> destination){
@@ -23,14 +30,18 @@ public:
   }
 
   void countMovingCards(int n){
-    if(movingCards.getSize() != n){
-      from->add(movingCards);
+    if(nbCardsToMove != n)
       throw IllegalMovement("The number of cards must be : " + n);
-    }
+  }
+
+  void movingCardsFromTop(){
+    for(int i = 0; i < nbCardsToMove; i++)
+      if(cardsToMove[i] != i)
+	throw IllegalMovement("Cards must be taken from the top of you hand");
   }
 
   void apply(){
-    to->add(movingCards);
+    to->add(from->remove(cardsToMove, nbCardsToMove));
   }
 };
 
