@@ -9,6 +9,7 @@ using namespace std;
 int main(){
   cout << " -- Card Game -- " << endl;
 
+<<<<<<< HEAD
   // Bataille b(2);
   //b.run();
   //  return 0;
@@ -47,4 +48,10 @@ int* main::delimitWith(string flux, string delimiter){
   }
   tab[i+1]= stoi(split,&st);
   return tab;
+=======
+  Bataille b(2);
+  b.run();
+
+  return 0;
+>>>>>>> 168b2ccb4172751dccc9b2e162ea8044d70e42aa
 }

@@ -27,8 +27,10 @@ public:
   bool operator> (const Card& card) const { return rank >  card.rank; }
   bool operator>=(const Card& card) const { return rank >= card.rank; }
 
-  bool operator!=(const Card& card) const { return rank != card.rank || suit != card.suit; }
-  bool operator==(const Card& card) const { return rank == card.rank && suit == card.suit; }
+  //  bool operator!=(const Card& card) const { return rank != card.rank || suit != card.suit; }
+  //  bool operator==(const Card& card) const { return rank == card.rank && suit == card.suit; }
+  bool operator!=(const Card& card) const { return rank != card.rank; }
+  bool operator==(const Card& card) const { return rank == card.rank; }
 
   ostream& print(ostream& os) { return isVisible() ? os << rank << suit : os << "["; }
 
