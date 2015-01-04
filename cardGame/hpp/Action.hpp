@@ -32,7 +32,7 @@ public:
   void countMovingCards(int n){
 
     if(nbCardsToMove != n)
-      throw IllegalMovement("The number of cards must be : " + n);
+      throw IllegalMovement("The number of cards must be : ");
   }
 
   void movingCardsFromTop(){
