@@ -5,7 +5,7 @@ OBJ = obj/
 SRCS = $(wildcard $(SRC)*.cpp)
 OBJS = $(addprefix $(OBJ),$(notdir $(SRCS:.cpp=.o)))
 
-FLAGS = -I $(HPP)
+FLAGS = -I $(HPP) -std=c++11
 CC = g++ $(FLAGS)
 
 
