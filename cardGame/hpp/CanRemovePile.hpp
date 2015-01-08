@@ -2,11 +2,11 @@
 #define H_CAN_REMOVE_PILE
 
 #include "CardContainer.hpp"
+#include "Movement.hpp"
 
-template<typename T>
 class CanRemovePile {
 public:
-  virtual CardContainer<T> remove(int*, int) = 0;
+  virtual CardContainer remove(Movement&) = 0;
 };
 
 #endif

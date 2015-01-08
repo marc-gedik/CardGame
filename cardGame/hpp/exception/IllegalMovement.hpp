@@ -1,10 +1,9 @@
 #ifndef H_ILLEGAL_MOVEMENT
 #define H_ILLEGAL_MOVEMENT
 
-#include <exception>
 #include <iostream>
 
-class IllegalMovement : public exception {
+class IllegalMovement : public std::exception {
 private:
   std::string msg;
 public:

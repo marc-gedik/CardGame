@@ -2,9 +2,8 @@
 #define H_BATAILLE
 
 #include "Game.hpp"
-#include "FrenchCard.hpp"
 
-class Bataille : public Game<FrenchCard> {
+class Bataille : public Game {
 private:
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
@@ -19,7 +18,7 @@ private:
   void checkBataille();
 
 public:
-  Bataille(int nbPlayers) : Game<FrenchCard>(nbPlayers, 1, nbPlayers) {
+  Bataille(int nbPlayers) : Game(nbPlayers, 1, nbPlayers) {
         initPlayersHand();
   }
 };

@@ -4,16 +4,12 @@
 #include "Deck.hpp"
 #include "Players.hpp"
 #include "DiscardPile.hpp"
-#include "Action.hpp"
 
-template<typename T>
 class Game {
-private:
-
 protected:
-  Players<T> players;
-  DiscardPile<T> * discardPiles;
-  Deck<T> deck;
+  DiscardPile* discardPiles;
+  Players players;
+  Deck deck;
 
   bool finished;
 
@@ -24,17 +20,10 @@ protected:
   virtual void printHeader() = 0;
   virtual void play() = 0;
 
-  Game(int nbPlayer, int nbPaquet =1, int nbDiscardPiles =1)
-    : players(nbPlayer), deck(nbPaquet)
-  {
-    discardPiles = new DiscardPile<T> [nbDiscardPiles];
-  }
+  Game(int, int, int);
 
 public:
-  void run(){
-    while(!finished)
-      play();
-  }
+  void run();
 };
 
 #endif

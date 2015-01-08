@@ -1,27 +1,43 @@
 #include "Deck.hpp"
 
-#include "Card.hpp"
-#include "FrenchCard.hpp"
+// template <typename Suit, typename Rank>
+// Card**  init(int nbrDeck, Suit* suits, int nbrSuit, Rank* ranks, int nbrRank){
+//   int n = nbrDeck * nbrFrenchSuit * nbrFrenchRank;
+//   Card** cards = new Card * [n];
 
-template <typename Suit, typename Rank>
-Card<Suit, Rank>**  init(int nbrDeck, Suit* suits, int nbrSuit, Rank* ranks, int nbrRank){
-  int n = nbrDeck * nbrFrenchSuit * nbrFrenchRank;
-  Card<Suit, Rank>** cards = new Card<Suit, Rank> * [n];
+//   for(int i = 0; i < nbrDeck; i++){
+//     for(int j = 0; j < nbrSuit; j++){
+//       for(int k = 0; k < nbrRank; k++){
+// 	int nCard = (i + j * nbrDeck) * nbrRank + k;
+// 	cards[nCard] = new Card(suits[j], ranks[k]);
+//       }
+//     }
+//   }
+//   return cards;
+// }
 
-  for(int i = 0; i < nbrDeck; i++){
-    for(int j = 0; j < nbrSuit; j++){
-      for(int k = 0; k < nbrRank; k++){
-	int nCard = (i + j * nbrDeck) * nbrRank + k;
-	cards[nCard] = new Card<Suit, Rank>(suits[j], ranks[k]);
-      }
-    }
-  }
-  return cards;
+Deck::Deck(int nbrDeck){
+  cout << "Todo init deck" << endl;
+  throw;
+  // nbCards = nbrDeck * nbrFrenchSuit * nbrFrenchRank;
+  // cards = init(nbrDeck, frenchSuits, nbrFrenchSuit, frenchRanks, nbrFrenchRank);
+  shuffle();
 }
 
-template <>
-Deck<FrenchCard >::Deck(int nbrDeck){
-  nbCards = nbrDeck * nbrFrenchSuit * nbrFrenchRank;
-  cards = init(nbrDeck, frenchSuits, nbrFrenchSuit, frenchRanks, nbrFrenchRank);
-  shuffle(nbCards);
+#include <iostream>
+Deck::~Deck(){
+  std::cout << "Deck detruit" << std::endl;
+  delete [] cards;
+}
+
+Card& Deck::deal(){
+    return *cards[--nbCards];
+}
+
+void Deck::shuffle(){
+  melangePharaon(cards, nbCards, 10);
+}
+
+int Deck::getSize(){
+  return nbCards;
 }

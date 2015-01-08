@@ -5,39 +5,26 @@
 
 using namespace std;
 
-template<typename Suit, typename Rank>
 class Card {
 protected:
-  bool hidden;
-  Suit suit;
-  Rank rank;
+  virtual int getRank() const = 0;
+  virtual int getSuit() const = 0;
+
+  virtual bool isHidden()  const = 0;
+  virtual bool isVisible() const = 0;
+  virtual void flip() = 0;
+
+  virtual ostream& print(ostream&) = 0;
 public:
-  Card() {}
-  Card(Suit s, Rank r, bool hide = false)
-    : suit(s), rank(r), hidden(hide) {}
-  ~Card(){
-    //    cout << "Carte detruit";
-  }
-  bool isHidden()  const { return hidden; }
-  bool isVisible() const { return !hidden; }
-  void flip() { hidden = !hidden; }
+  bool operator< (const Card& card) const;
+  bool operator<=(const Card& card) const;
+  bool operator> (const Card& card) const;
+  bool operator>=(const Card& card) const;
 
-  bool operator< (const Card& card) const { return rank <  card.rank; }
-  bool operator<=(const Card& card) const { return rank <= card.rank; }
-  bool operator> (const Card& card) const { return rank >  card.rank; }
-  bool operator>=(const Card& card) const { return rank >= card.rank; }
+  bool operator!=(const Card& card) const;
+  bool operator==(const Card& card) const;
 
-  //  bool operator!=(const Card& card) const { return rank != card.rank || suit != card.suit; }
-  //  bool operator==(const Card& card) const { return rank == card.rank && suit == card.suit; }
-  bool operator!=(const Card& card) const { return rank != card.rank; }
-  bool operator==(const Card& card) const { return rank == card.rank; }
-
-  ostream& print(ostream& os) { return isVisible() ? os << rank << suit : os << "["; }
-
-  friend ostream& operator<<(ostream& os, Card<Suit,Rank>& card){
-    return card.print(os);
-  }
-
+  friend ostream& operator<<(ostream&, Card&);
 };
 
 #endif

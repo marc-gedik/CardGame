@@ -8,66 +8,33 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
 class Players {
 private:
-  Player<T>* players;
+  Player** players;
   int nbPlayers;
   int actual;
   int order;
 public:
-  Players(int n, int ord = 1)
-    : nbPlayers(n), actual(0), order(ord){
-    players = new Player<T>[n];
-  }
+  Players(int, bool humans = true, int ord = 1);
+  Player& next();
+  Player& getActualPlayer();
 
-  Player<T>& next(){
-    actual = (actual + order) % nbPlayers;
-    return players[actual];
-  }
+  void reverseOrder();
 
-  Player<T>& getActualPlayer(){
-    return players[actual];
-  }
+  int getNbPlayers();
 
-  void reverseOrder(){
-    order = -order;
-  }
+  int getActualPlayerId();
 
-  int getNbPlayers(){
-    return nbPlayers;
-  }
+  void setActualPlayer(int);
 
-  int getActualPlayerId(){
-    return actual;
-  }
+  void eliminer(int);
 
-  void setActualPlayer(int i){
-    if(i>=0 && i < nbPlayers)
-      actual = i;
-  }
+  void ask(Action&);
 
-  void eliminer(int player){
-    nbPlayers--;
-    //Todo enlever player à la position "player"
-  }
+  void addTo(int, Card&);
+  void addTo(int, const CardContainer&);
 
-  void ask(Action<T>& action){
-    cout << "Player " << actual << " : ";
-    players[actual].ask(action);
-  }
-
-  void addCard(int i, T& card){
-    players[i].add(card);
-  }
-
-  void addCards(int i, CardContainer<T> cards){
-    players[i].add(cards);
-  }
-
-  bool emptyHand(int i){
-    players[i].noCards();
-  }
+  bool emptyHand(int);
 
 };
 

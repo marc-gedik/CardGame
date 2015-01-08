@@ -1,49 +1,32 @@
 #ifndef H_ACTION
 #define H_ACTION
 
-#include "IllegalMovement.hpp"
 #include "CardContainer.hpp"
 #include "CanAddRemovePile.hpp"
 #include "CanAddPile.hpp"
+#include "Movement.hpp"
 
-template<typename T>
 class Action {
 private:
-  CanAddRemovePile<T> *from;
-  CanAddPile<T> *to;
-  CardContainer<T> movingCards, destination;
-  int* cardsToMove;
-  int nbCardsToMove;
+  CanAddRemovePile *from;
+  CanAddPile * to;
+  CardContainer movingCards, destination;
+  Movement movement;
 
+  void checkMovement();
 public:
   Action(){}
 
-  void setFrom(CanAddRemovePile<T>* from, int* cardsToMove, int nbCardsToMove){
-    this->cardsToMove = cardsToMove;
-    this->nbCardsToMove = nbCardsToMove;
-    this->from = from;
-  }
+  void setFrom(CanAddRemovePile& , Movement&);
 
-  void setTo(CanAddPile<T>* to, CardContainer<T> destination){
-    this->to = to;
-    this->destination = destination;
-  }
+  void setTo(CanAddPile&, const CardContainer&);
 
-  void countMovingCards(int n){
+  void countMovingCards(int n);
 
-    if(nbCardsToMove != n)
-      throw IllegalMovement("The number of cards must be : ");
-  }
+  void movingCardsFromTop();
 
-  void movingCardsFromTop(){
-    for(int i = 0; i < nbCardsToMove; i++)
-      if(cardsToMove[i] != i)
-	throw IllegalMovement("Cards must be taken from the top of you hand");
-  }
+  void apply();
 
-  void apply(){
-    to->add(from->remove(cardsToMove, nbCardsToMove));
-  }
 };
 
 #endif

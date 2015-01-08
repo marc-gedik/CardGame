@@ -4,10 +4,11 @@
 #include "CanAddPile.hpp"
 #include "CanRemovePile.hpp"
 
-template<typename T>
 class CanAddRemovePile
-  : public CanAddPile<T>,
-    public CanRemovePile<T> {
+  : public CanAddPile,
+    public CanRemovePile {
+public:
+  virtual int getSize() = 0;
 };
 
 #endif

@@ -1,6 +1,7 @@
 #include "Bataille.hpp"
+
 #include "Action.hpp"
-#include "IllegalMovement.hpp"
+#include "exception/IllegalMovement.hpp"
 
 #include <iostream>
 using namespace std;
@@ -26,16 +27,16 @@ void Bataille::initPlayersHand(){
 
   for(int j = 0; j < cPP; j++)
     for(int i = 0; i < n; i++){
-      FrenchCard& card = deck.pop();
+      Card& card = deck.deal();
       //      card.flip();
-      players.addCard(i, card);
+      players.addTo(i, card);
     }
 
 }
 
 void Bataille::first(){
-  Action<FrenchCard> action;
-  action.setTo(&discardPiles[players.getActualPlayerId()], CardContainer<FrenchCard>());
+  Action action;
+  action.setTo(discardPiles[players.getActualPlayerId()], CardContainer());
   players.ask(action);
 
   try{
@@ -50,12 +51,12 @@ void Bataille::first(){
 }
 
 void Bataille::checkBataille(){
-  FrenchCard highest = discardPiles[0].look();
+  Card& highest = discardPiles[0].look();
   int bataille = 0;
   int pos = 0;
 
   for(int i = 1; i < players.getNbPlayers(); i++){
-    FrenchCard c = discardPiles[i].look();
+    Card& c = discardPiles[i].look();
     if(highest < c){
       bataille = 0;
       highest = c;
@@ -77,7 +78,7 @@ void Bataille::checkBataille(){
 
 void Bataille::giveAllTo(int k){
   for(int i = 0; i < players.getNbPlayers(); i++)
-    players.addCards(k, discardPiles[i].removeAll());
+    players.addTo(k, discardPiles[i].removeAll());
 }
 
 void Bataille::play(int n){

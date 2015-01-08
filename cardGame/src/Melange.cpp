@@ -1,17 +1,27 @@
+#include "Melange.hpp"
+
 #include <cstdlib>
 #include <ctime>
 
-template <typename T>
-void melangePharaon(T** tab, int size, int n){
+
+void fusion(Card** tab, Card** tab1, int size1, Card** tab2, int size2){
+  int i, i1, i2;
+  for(i = 0, i1 = 0, i2 = 0; i1 < size1;)
+    tab[i++] = tab1[i1++], tab[i++] = tab2[i2++];
+  for(; i2 < size2;)
+    tab[i++] = tab2[i2++];
+}
+
+void melangePharaon(Card** tab, int size, int n){
   srand(time(0));
   int decallage = size/4;
   int middle;
   for(int j =0; j < n; j++){
     middle = rand()%decallage + (size/2-decallage/2);
     int size1 = middle;
-    T** tab1 = new T *[size1];
+    Card** tab1 = new Card*[size1];
     int size2 = size-middle;
-    T** tab2 = new T *[size2];
+    Card** tab2 = new Card*[size2];
 
     for(int i =0; i < size1; i++)
       tab1[i] = tab[i];
@@ -25,13 +35,4 @@ void melangePharaon(T** tab, int size, int n){
     delete [] tab1;
     delete [] tab2;
   }
-}
-
-template <typename T>
-void fusion(T** tab, T** tab1, int size1, T** tab2, int size2){
-  int i, i1, i2;
-  for(i = 0, i1 = 0, i2 = 0; i1 < size1;)
-    tab[i++] = tab1[i1++], tab[i++] = tab2[i2++];
-  for(; i2 < size2;)
-    tab[i++] = tab2[i2++];
 }

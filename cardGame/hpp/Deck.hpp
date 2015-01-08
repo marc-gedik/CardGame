@@ -2,29 +2,23 @@
 #define H_DECK
 
 #include "Melange.hpp"
+#include "Card.hpp"
 
 #include <iostream>
 
-template <typename T>
 class Deck {
 protected:
-  T** cards;
+  Card** cards;
   int nbCards;
 public:
   Deck(int nbrDecks);
-  ~Deck() {
-    std::cout << "Deck detruit" << std::endl;
-    for(int i = 0; i < nbCards; i++)
-      delete cards[i];
-    delete [] cards;
-  }
+  ~Deck();
 
-  T& pop(){
-    return *cards[--nbCards];
-  }
+  Card& deal();
 
-  void shuffle(int size){   melangePharaon(cards, size, 10); }
-  int getSize(){ return nbCards; }
+  void shuffle();
+
+  int getSize();
 };
 
 #endif

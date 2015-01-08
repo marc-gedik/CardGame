@@ -5,25 +5,15 @@
 
 #include "CardContainer.hpp"
 
-template <typename T>
 class Pioche {
 
 private:
-  stack<T> myPioche ;
+  stack<Card*> pioche ;
 
 public:
-  Pioche(){}
+  Pioche(CardContainer&);
 
-  void createPioche(CardContainer<T> c, int nbCard){
-    for(int i = 0; i < nbCard; i++)
-      myPioche.push(c.getElement(i));
-  }
-
-  T& draw(){
-    T tmp =  myPioche.top();
-    myPioche.pop();
-    return tmp;
-  }
+  Card& draw();
 };
 
 #endif

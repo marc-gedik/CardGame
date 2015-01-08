@@ -6,73 +6,29 @@
 
 #include "CanAddRemovePile.hpp"
 #include "CardContainer.hpp"
+#include "Card.hpp"
+#include "Movement.hpp"
 
 using namespace std;
 
-template <typename T>
-class Hand : public CanAddRemovePile<T> {
-
+class Hand : public CanAddRemovePile {
 private:
-  list<T> myHand ;
+  list<Card*> hand ;
 
 public:
-
   Hand(){}
 
-  virtual void add(CardContainer<T> c){
-    for(int i = 0; i < c.getSize(); i++)
-      myHand.push_front (c.getElement(i));
-  }
+  virtual void add(Card&);
+  virtual void add(const CardContainer&);
+  virtual int getSize();
 
-  // T'es sur de ça ?
-  CardContainer<T> remove(int *position, int size){
-    int j=0;
-    bool flag= true;
-    T* tabCard;
-    typename list<T>::iterator it1 ;
-    putInOrder(position, size);
-    for(int i =0; i<size; i++){
-      it1= myHand.begin();
-      if(position[i]< myHand.size()){
-	if(flag){
-	  tabCard = new T[size-i];
-	  flag=false;
-	}
-	advance (it1,position[i]);
-	tabCard[j]=*it1;
-	j++;
-	myHand.erase(it1);
-      }
-    }
-    return CardContainer<T>(tabCard, j);
-  }
+  virtual CardContainer remove(Movement&);
 
-  void putInOrder(int tab[], int size){
-    int tmp=0;
-    for(int i = 1; i < size; i++) {
-      for(int j=0; j < size - 1; j++)  {
-	if(tab[j]<tab[i]){
-	  tmp = tab[i];
-	  tab[i] = tab[j];
-	  tab[j] = tmp;
-	}
-      }
-    }
-  }
+  bool isEmpty();
 
-  void printHand(){
-    typename list<T>::iterator itCurrent = myHand.begin();
-    typename list<T>::iterator itEnd = myHand.end();
-    while(itCurrent != itEnd){
-      cout << (*itCurrent) << " ";
-      itCurrent++;
-    }
-    cout << endl;
-  }
+  ostream& print(ostream&);
 
-  void isEmpty(){
-    myHand.empty();
-  }
+  friend ostream& operator<<(ostream&, Hand&);
 };
 
 #endif

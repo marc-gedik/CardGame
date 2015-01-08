@@ -1,5 +1,5 @@
-#ifndef H_DISCARDPILE
-#define H_DISCARDPILE
+#ifndef H_DISCARD_PILE
+#define H_DISCARD_PILE
 
 #include <stack>
 
@@ -9,64 +9,28 @@
 
 using namespace std;
 
-template <typename T>
-class DiscardPile : public CanAddPile<T>{
+class DiscardPile : public CanAddPile {
 
 private:
-  stack<T> myDiscardPile ;
+  stack<Card*> discardPile;
 
 public:
 
   DiscardPile(){}
 
-  virtual void add(T &x){
-    myDiscardPile.push(x);
-  }
-
-  virtual void add(CardContainer<T> c){
-    for(int i = 0; i < c.getSize(); i++)
-      myDiscardPile.push(c.getElement(i));
-  }
+  virtual void add(Card &x);
+  virtual void add(const CardContainer& c);
 
 
-  T& removeTop(){
-    T& tmp = myDiscardPile.top();
-    myDiscardPile.pop();
-    return tmp;
-  }
 
-  CardContainer<T> removeAll(){
-    int size=myDiscardPile.size();
-    T* tabCard = new T[size];
+  CardContainer removeAll();
 
-    for(int i=0; i<size; i++){
-      tabCard[i]=myDiscardPile.top();
-      myDiscardPile.pop();
-    }
-    return CardContainer<T>(tabCard, size);
-  }
+  Card& look();
 
-  T& look(){
-    return myDiscardPile.top();
-  }
+  ostream& print(ostream& os);
 
-  ostream& print(ostream&os){
-    if(myDiscardPile.size()==0)
-      return os << "Pile vide";
-    else
-      return os << myDiscardPile.top();
-    // stack<T> tmp = myDiscardPile;
+  friend ostream& operator<<(ostream& os, DiscardPile& x);
 
-    // while(!tmp.empty()){
-    //   os << tmp.top() << " ";
-    //   tmp.pop();
-    // }
-    return os;
-  }
-
-  friend ostream& operator<<(ostream& os, DiscardPile<T> x){
-    return x.print(os);
-  }
 };
 
 #endif
