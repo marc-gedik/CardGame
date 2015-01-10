@@ -3,15 +3,17 @@
 
 #include "Melange.hpp"
 #include "Card.hpp"
+#include "CardContainer.hpp"
 
 #include <iostream>
 
 class Deck {
-protected:
+private:
   Card** cards;
   int nbCards;
 public:
-  Deck(int nbrDecks);
+  Deck() {}
+  Deck(int, CardContainer);
   ~Deck();
 
   Card& deal();

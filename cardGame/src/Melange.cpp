@@ -16,6 +16,7 @@ void melangePharaon(Card** tab, int size, int n){
   srand(time(0));
   int decallage = size/4;
   int middle;
+
   for(int j =0; j < n; j++){
     middle = rand()%decallage + (size/2-decallage/2);
     int size1 = middle;

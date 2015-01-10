@@ -18,7 +18,7 @@ $(OBJ)%.o: $(SRC)%.cpp $(HPP)%.hpp
 	$(CC) -c -o $@ $<
 
 $(OBJ)CanRemovePile.o:	  $(addprefix $(HPP), CardContainer.hpp Movement.hpp)
-$(OBJ)FrenchCard.o:	  $(addprefix $(HPP), FrenchSuit.hpp FrenchRank.hpp Card.hpp)
+$(OBJ)FrenchCard.o:	  $(addprefix $(HPP), SimpleCard.hpp)
 $(OBJ)SimpleCard.o:	  $(addprefix $(HPP), Card.hpp)
 $(OBJ)Pioche.o:		  $(addprefix $(HPP), CardContainer.hpp)
 $(OBJ)CardContainer.o:	  $(addprefix $(HPP), Card.hpp )

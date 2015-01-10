@@ -11,7 +11,6 @@ private:
 public:
 
   CardContainer() : size(0) {}
-
   CardContainer(Card**, int);
   CardContainer(Card&);
 

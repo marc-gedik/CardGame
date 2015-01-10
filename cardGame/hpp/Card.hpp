@@ -16,13 +16,15 @@ protected:
 
   virtual ostream& print(ostream&) = 0;
 public:
-  bool operator< (const Card& card) const;
-  bool operator<=(const Card& card) const;
-  bool operator> (const Card& card) const;
-  bool operator>=(const Card& card) const;
+  virtual Card* clone() const = 0;
 
-  bool operator!=(const Card& card) const;
-  bool operator==(const Card& card) const;
+  bool operator< (const Card&) const;
+  bool operator<=(const Card&) const;
+  bool operator> (const Card&) const;
+  bool operator>=(const Card&) const;
+
+  bool operator!=(const Card&) const;
+  bool operator==(const Card&) const;
 
   friend ostream& operator<<(ostream&, Card&);
 };

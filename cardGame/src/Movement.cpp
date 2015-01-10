@@ -81,37 +81,51 @@ void Movement::match3(string s, int n){
   }
 }
 
-Movement::Movement(string s){
-  int n = 0;
+Movement::Movement(string s, int match){
   unsigned int i = 0;
-  isInt(s, i);
-  if(s.length() == i)
-    match1(s);
+  int n = 0;
 
-  else if(i+2 < s.length()
-	  && s[i] == '.' && s[i+1] == '.'){
-    n = i;
-    i += 2;
-    isInt(s, i);
-    if(s.length() == i)
-      match2(s, n);
-    else
-      throw IllegalEntry();
+  isInt(s, i);
+  if((match & M_ONE) == M_ONE){
+    if(s.length() == i){
+      match1(s);
+      return;
+    }
+  }
+  if((match & M_INTERVAL) == M_INTERVAL){
+    if(i+2 < s.length()
+       && s[i] == '.' && s[i+1] == '.'){
+      n = i;
+      i += 2;
+      isInt(s, i);
+
+      if(s.length() == i){
+	match2(s, n);
+	return;
+      }
+      else
+	throw IllegalEntry();
+    }
   }
 
-  else {
+  if((match & M_LIST) == M_LIST) {
     bool flag = true;
     s.erase(remove(s.begin(), s.end(), ' '), s.end());
 
-    do{
+    while(i < s.length()){
       if(s[i++] != ',')
 	flag = false;
       isInt(s, i);
       n++;
-    } while(i < s.length());
-    if(flag && s.length() == i)
+    }
+    if(flag && s.length() == i){
       match3(s, n+1);
+      return;
+    }
     else
       throw IllegalEntry();
   }
+
+  throw IllegalEntry();
+
 }

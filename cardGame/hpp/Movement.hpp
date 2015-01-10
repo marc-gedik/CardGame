@@ -14,8 +14,9 @@ private:
   void match2(string, int);
   void match3(string, int);
 public:
+  static const int M_ONE = 1, M_INTERVAL = 2, M_LIST = 4;
   Movement() {}
-  Movement(string);
+  Movement(string, int = ((M_ONE | M_INTERVAL) | M_LIST));
 
   int operator[](int);
   int getSize();

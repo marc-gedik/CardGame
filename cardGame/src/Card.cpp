@@ -1,6 +1,5 @@
 #include "Card.hpp"
 
-
 bool Card::operator< (const Card& card) const { return getRank() <  card.getRank(); }
 bool Card::operator<=(const Card& card) const { return getRank() <= card.getRank(); }
 bool Card::operator> (const Card& card) const { return getRank() >  card.getRank(); }
