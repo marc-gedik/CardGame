@@ -3,12 +3,13 @@
 const int GameFactory::nbChoice = 1;
 const string GameFactory::choice[] = { "Bataille" };
 
-Game* GameFactory::createGame(Movement move){
-  if(move.getSize() == 1)
-    switch(move[0])
-    case 1:
-      return new Bataille(2);
-  throw;
+Game* GameFactory::createGame(Movement game, Movement nbPlayer){
+  switch(game[0]){
+  case 1:
+    return new Bataille(2);
+  default:
+    throw;
+  }
 }
 
 ostream& operator<<(ostream& os, GameFactory& gF){

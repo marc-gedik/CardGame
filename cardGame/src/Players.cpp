@@ -40,8 +40,9 @@ void Players::setActualPlayer(int i){
 }
 
 void Players::eliminer(int player){
+  for(int i = player; i < nbPlayers-1; i ++)
+    players[i] = players[i+1];
   nbPlayers--;
-  //Todo enlever player à la position "player"
 }
 
 void Players::ask(Action& action){

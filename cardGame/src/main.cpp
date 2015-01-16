@@ -18,16 +18,16 @@ int main(){
 
   cout << gameFactory << endl;
 
-  DeckFactory dF;
-
-  Deck d = dF.createDeck("Fr", 1);
-  cout << d.deal() << endl;
-
   string query;
 
   cout << "Choice : ";
   cin >> query;
-  Movement m(query);
-  gameFactory.createGame(m);
+  Movement m1(query, Movement::M_ONE);
+
+  cout << "Number of player : ";
+  cin >> query;
+  Movement m2(query, Movement::M_ONE);
+
+  gameFactory.createGame(m1, m2)->run();
   return 0;
 }

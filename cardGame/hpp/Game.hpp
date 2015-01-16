@@ -5,14 +5,15 @@
 #include "Players.hpp"
 #include "DiscardPile.hpp"
 
+#include <iostream>
+
 class Game {
 protected:
   DiscardPile* discardPiles;
   Players players;
-  Deck deck;
+  Deck* deck;
 
-  bool finished;
-
+  virtual bool isFinished() = 0;
   virtual void initPlayersHand() = 0;
   virtual int cardsPerPlayer(int) = 0;
   virtual void checkNumberOfPlayers(int) = 0;
@@ -20,7 +21,8 @@ protected:
   virtual void printHeader() = 0;
   virtual void play() = 0;
 
-  Game(int, int, int);
+  void createDeck(std::string, int);
+  void initGame(std::string, int, int, int);
 
 public:
   void run();

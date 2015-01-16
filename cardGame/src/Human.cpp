@@ -15,6 +15,7 @@ void Human::ask(Action& action){
 
   try{
     movement = Movement(query);
+    action.setFrom(hand, movement);
   }catch(IllegalEntry e){
     cout << e.what() << endl;
     ask(action);

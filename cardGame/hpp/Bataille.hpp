@@ -8,6 +8,7 @@ private:
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;
+  virtual bool isFinished();
 
   virtual void printHeader();
   virtual void play();
@@ -18,8 +19,9 @@ private:
   void checkBataille();
 
 public:
-  Bataille(int nbPlayers) : Game(nbPlayers, 1, nbPlayers) {
-        initPlayersHand();
+  Bataille(int nbPlayers){
+    initGame("Fr", nbPlayers, 1, nbPlayers);
+    initPlayersHand();
   }
 };
 

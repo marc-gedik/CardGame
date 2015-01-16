@@ -10,7 +10,29 @@ void Hand::add(const CardContainer& cards){
 }
 
 CardContainer Hand::remove(Movement& movement){
-  throw "Todo";
+  list<Card*>::iterator it = hand.begin();
+  int k = 0;
+  int n = movement.getSize();
+  Card** cards = new Card * [n];
+  bool find;
+  for (int i = 0; i < n; i++){
+    find = false;
+    it = hand.begin();
+    k = 0;
+    while (it != hand.end()){
+      if(movement[i] == k){
+	cards[i] = *it;
+	it = hand.erase(it);
+	find = true;
+	break;
+      }
+      k++;
+    }
+    if(!find)
+      throw "Todo Not find";
+  }
+
+  return CardContainer(cards, n);
 }
 
 bool Hand::isEmpty(){
@@ -26,7 +48,7 @@ ostream& Hand::print(ostream& os){
     itCurrent = hand.begin(),
     itEnd = hand.end();
 
-  while(itCurrent++ != itEnd){
+  while(itCurrent != itEnd){
     os << *(*itCurrent) << " ";
     itCurrent++;
   }

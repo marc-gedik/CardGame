@@ -22,8 +22,9 @@ void Action::setTo(CanAddPile& to, const CardContainer& destination){
 }
 
 void Action::countMovingCards(int n){
+  cout << movement.getSize() << endl;
   if(movement.getSize() != n)
-    throw IllegalMovement("The number of cards must be : ");
+    throw IllegalMovement("The number of cards must be : " + n );
 }
 
 void Action::movingCardsFromTop(){

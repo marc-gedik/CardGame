@@ -15,6 +15,7 @@ private:
   int actual;
   int order;
 public:
+  Players() {}
   Players(int, bool humans = true, int ord = 1);
   Player& next();
   Player& getActualPlayer();

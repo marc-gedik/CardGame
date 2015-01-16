@@ -14,7 +14,7 @@ public:
   static const int nbChoice;
   static const string choice[];
 
-  Game* createGame(Movement);
+  Game* createGame(Movement, Movement);
 
   friend ostream& operator<<(ostream&, GameFactory&);
 };

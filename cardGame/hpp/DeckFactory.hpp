@@ -8,7 +8,7 @@ class DeckFactory {
 public:
   enum Decks { French, Italian, Uno };
 
-  Deck createDeck(std::string, int);
+  Deck* createDeck(std::string, int);
 };
 
 #endif

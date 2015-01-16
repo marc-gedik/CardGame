@@ -13,7 +13,14 @@ void Bataille::checkNumberOfPlayers(int nbPlayer){
 }
 
 int Bataille::cardsPerPlayer(int nbPlayer){
-  return deck.getSize()/nbPlayer;
+  return deck->getSize()/nbPlayer;
+}
+
+bool Bataille::isFinished(){
+  for(int i = 0; i < players.getNbPlayers(); i++)
+    if(players.emptyHand(i))
+      players.eliminer(i);
+  return players.getNbPlayers() == 1;
 }
 
 void Bataille::printHeader(){
@@ -21,17 +28,15 @@ void Bataille::printHeader(){
 }
 
 void Bataille::initPlayersHand(){
-
   int n = players.getNbPlayers();
   int cPP = cardsPerPlayer(n);
 
   for(int j = 0; j < cPP; j++)
     for(int i = 0; i < n; i++){
-      Card& card = deck.deal();
+      Card& card = deck->deal();
       //      card.flip();
       players.addTo(i, card);
     }
-
 }
 
 void Bataille::first(){
