@@ -4,8 +4,13 @@
 #include <iostream>
 #include "SimpleCard.hpp"
 
-enum UnoSuit { Blue, Green, Red, Yellow, NoColor };
-enum UnoRank { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, PlusTwo, PlusFour, Reverse, Skip, Joker, SuperJoker };
+namespace uno {
+  enum UnoSuit { Blue, Green, Red, Yellow, NoColor };
+  enum UnoRank { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, PlusTwo, Reverse, Skip, Joker, SuperJoker };
+}
+
+
+using namespace uno;
 
 extern UnoSuit unoSuits[];
 extern int nUnoSuits;

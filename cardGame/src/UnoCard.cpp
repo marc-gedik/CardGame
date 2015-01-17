@@ -1,5 +1,6 @@
 #include "UnoCard.hpp"
 
+using namespace uno;
 std::ostream& operator<<(std::ostream& os, const UnoRank& rank){
   switch(rank){
   case Zero: return os << "O";
@@ -13,7 +14,6 @@ std::ostream& operator<<(std::ostream& os, const UnoRank& rank){
   case Eight: return os << "8";
   case Nine : return os << "9";
   case PlusTwo: return os << "+2";
-  case PlusFour: return os << "+4";
   case Reverse: return os << "<-->";
   case Skip: return os << "Skip";
   case Joker: return os << "Joker";
@@ -21,8 +21,8 @@ std::ostream& operator<<(std::ostream& os, const UnoRank& rank){
   default   : return os << "_";
   }
 }
-UnoRank unoRanks[] { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, PlusTwo, PlusFour,Reverse, Skip, Joker, SuperJoker };
-int nUnohRanks = 16;
+UnoRank unoRanks[] = { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, PlusTwo, Reverse, Skip, Joker, SuperJoker };
+int nUnoRanks = 15;
 
 std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
   switch(suit){
@@ -34,5 +34,5 @@ std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
   }
 }
 
-UnoSuit unoSuits[] { Blue, Green, Red, Yellow, NoColor };
-int nFrenchSuits = 5;
+UnoSuit unoSuits[]= { Blue, Green, Red, Yellow, NoColor };
+int nUnoSuits = 5;

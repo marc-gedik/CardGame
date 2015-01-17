@@ -7,7 +7,7 @@ using namespace std;
 
 #include "Deck.hpp"
 #include "DeckFactory.hpp"
-
+#include "CardFactory.hpp"
 int main(){
   GameFactory gameFactory;
 
@@ -15,7 +15,7 @@ int main(){
   cout << "---------------" << endl;
   cout << "-- Card Game --" << endl;
   cout << "---------------" << endl;
-
+  /*
   cout << gameFactory << endl;
 
   string query;
@@ -29,5 +29,17 @@ int main(){
   Movement m2(query, Movement::M_ONE);
 
   gameFactory.createGame(m1, m2)->run();
+  */
+ cout << "---------------" << endl;
+  cout << "-- test UNO CARD --" << endl;
+  cout << "---------------" << endl;
+
+  //DeckFactory d;
+  //d.createDeck("uno", 108);
+  
+  CardFactory c;
+  c.createCards("uno");
+
+  
   return 0;
 }
