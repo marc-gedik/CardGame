@@ -6,7 +6,7 @@ const string GameFactory::choice[] = { "Bataille" };
 Game* GameFactory::createGame(Movement game, Movement nbPlayer){
   switch(game[0]){
   case 1:
-    return new Bataille(2);
+    return new Bataille(nbPlayer[0]);
   default:
     throw;
   }

@@ -42,7 +42,7 @@ void Bataille::initPlayersHand(){
 void Bataille::first(){
   Action action;
   action.setTo(discardPiles[players.getActualPlayerId()], CardContainer());
-  players.ask(action);
+  players.ask(action, Movement::M_ONE);
 
   try{
     action.countMovingCards(1);

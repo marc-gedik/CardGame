@@ -45,9 +45,9 @@ void Players::eliminer(int player){
   nbPlayers--;
 }
 
-void Players::ask(Action& action){
+void Players::ask(Action& action, int what){
   cout << "Player " << actual << " : ";
-  players[actual]->ask(action);
+  players[actual]->ask(action, what);
 }
 
 void Players::addTo(int i, Card& card){

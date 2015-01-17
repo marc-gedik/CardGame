@@ -30,6 +30,7 @@ std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
   case Green: return os << "Green";
   case Yellow   : return os << "Yellow";
   case Red  : return os << "Red";
+  case NoColor  : return os << "~";
   default     : return os << "_";
   }
 }

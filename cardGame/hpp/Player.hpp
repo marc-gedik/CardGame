@@ -9,7 +9,7 @@ class Player {
 protected:
   Hand hand;
 public:
-  virtual void ask(Action&) = 0;
+  virtual void ask(Action&, int) = 0;
 
   void add(Card&);
   void add(const CardContainer&);

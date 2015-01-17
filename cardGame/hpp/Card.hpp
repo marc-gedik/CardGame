@@ -5,6 +5,8 @@
 
 using namespace std;
 
+class Settings;
+
 class Card {
 protected:
   virtual int getRank() const = 0;
@@ -18,6 +20,7 @@ protected:
 public:
   virtual Card* clone() const = 0;
 
+  ~Card();
   bool operator< (const Card&) const;
   bool operator<=(const Card&) const;
   bool operator> (const Card&) const;
@@ -25,6 +28,8 @@ public:
 
   bool operator!=(const Card&) const;
   bool operator==(const Card&) const;
+
+  int compare(const Card&, const Settings&);
 
   friend ostream& operator<<(ostream&, Card&);
 };

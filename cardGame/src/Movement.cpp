@@ -31,6 +31,15 @@ int Movement::getSize(){
   return nbCards;
 }
 
+bool Movement::isWhat(int what){
+  return (type & what) == what;
+}
+
+bool Movement::isOne()	   { return isWhat(M_ONE);     }
+bool Movement::isList()	   { return isWhat(M_LIST);    }
+bool Movement::isInterval(){ return isWhat(M_INTERVAL);}
+bool Movement::isPioche()  { return isWhat(M_PIOCHE);  }
+
 void Movement::isInt(string s, unsigned int &i){
   unsigned int j = i;
   for(; i < s.length(); i++)
@@ -41,12 +50,14 @@ void Movement::isInt(string s, unsigned int &i){
 }
 
 void Movement::match1(string s){
+  type = M_ONE;
   nbCards = 1;
   cardsPos = new int[nbCards];
   cardsPos[0] = atoi(s.c_str());
 }
 
 void Movement::match2(string s, int lim){
+  type = M_INTERVAL;
   string sG = s.substr(0, lim);
   string sD = s.substr(lim+2);
 
@@ -67,6 +78,7 @@ void Movement::match2(string s, int lim){
 }
 
 void Movement::match3(string s, int n){
+  type = M_LIST;
   nbCards = n;
   cardsPos = new int[nbCards];
 
@@ -81,18 +93,25 @@ void Movement::match3(string s, int n){
   }
 }
 
+void Movement::match4(){
+  type = M_PIOCHE;
+}
+
 Movement::Movement(string s, int match){
   unsigned int i = 0;
   int n = 0;
 
-  isInt(s, i);
   if((match & M_ONE) == M_ONE){
+    i = 0;
+    isInt(s, i);
     if(s.length() == i){
       match1(s);
       return;
     }
   }
   if((match & M_INTERVAL) == M_INTERVAL){
+    i = 0;
+    isInt(s, i);
     if(i+2 < s.length()
        && s[i] == '.' && s[i+1] == '.'){
       n = i;
@@ -109,6 +128,8 @@ Movement::Movement(string s, int match){
   }
 
   if((match & M_LIST) == M_LIST) {
+    i = 0;
+    isInt(s, i);
     bool flag = true;
     s.erase(remove(s.begin(), s.end(), ' '), s.end());
 
@@ -126,6 +147,10 @@ Movement::Movement(string s, int match){
       throw IllegalEntry();
   }
 
+  if((match & M_PIOCHE) == M_PIOCHE){
+    if(s.compare("pioche") == 0)
+      match4();
+  }
   throw IllegalEntry();
 
 }

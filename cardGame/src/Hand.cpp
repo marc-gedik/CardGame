@@ -1,7 +1,7 @@
 #include "Hand.hpp"
 
 void Hand::add(Card& card){
-  hand.push_front (&card);
+  hand.push_back(&card);
 }
 
 void Hand::add(const CardContainer& cards){

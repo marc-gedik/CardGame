@@ -7,6 +7,7 @@ using namespace std;
 void Game::initGame(string deckType, int nbPlayer, int nbPaquet =1, int nbDiscardPiles =1){
   DeckFactory deckFactory;
 
+  checkNumberOfPlayers(nbPlayer);
   players = Players(nbPlayer);
   discardPiles = new DiscardPile [nbDiscardPiles];
 

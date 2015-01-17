@@ -3,8 +3,7 @@
 #include "Movement.hpp"
 #include "exception/IllegalEntry.hpp"
 
-// Todo Demander plusieurs cartes
-void Human::ask(Action& action){
+void Human::ask(Action& action, int what){
   Movement movement;
   string query;
 
@@ -14,10 +13,10 @@ void Human::ask(Action& action){
   cin >> query;
 
   try{
-    movement = Movement(query);
+    movement = Movement(query, what);
     action.setFrom(hand, movement);
   }catch(IllegalEntry e){
     cout << e.what() << endl;
-    ask(action);
+    ask(action, what);
   }
 }

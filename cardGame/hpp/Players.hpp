@@ -30,7 +30,7 @@ public:
 
   void eliminer(int);
 
-  void ask(Action&);
+  void ask(Action&, int);
 
   void addTo(int, Card&);
   void addTo(int, const CardContainer&);

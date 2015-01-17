@@ -22,24 +22,28 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
 
   //creation carte 0-9-+2-skip-reverse-skip pour charque couleur
   for(int i = 0; i < nSuits-1; i++){
-    cards[indice] = new SimpleCard<Suit, Rank>(suits[i], ranks[0]);
+    cards[indice] = new SimpleCard<Suit, Rank>(suits[i], uno::Zero);
     indice ++;
-  }/*
-  for(int i = 0; i < nRanks-2; i++){
+  }
+
+  for(int i = 1; i < nRanks-2; i++){
     for(int j = 0; j < nSuits-1; j++){
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
       indice++;
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
-      indice++;			    
+      indice++;
     }
   }
 
   for(int i = 0; i < 4; i++){
-    cards[indice] = new SimpleCard<Suit, Rank>(suits[5], ranks[nRanks]);
+    cards[indice] = new SimpleCard<Suit, Rank>(uno::NoColor, uno::Joker);
     indice ++;
-    cards[indice] = new SimpleCard<Suit, Rank>(suits[5], ranks[nRanks-1]);
+    cards[indice] = new SimpleCard<Suit, Rank>(uno::NoColor, uno::SuperJoker);
     indice ++;
-    }*/
+  }
+
+  for(int i = 0; i < 108; i ++)
+    cout << *cards[i] << endl;
   return CardContainer(cards, 108);
 }
 
