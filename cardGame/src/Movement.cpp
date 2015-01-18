@@ -102,43 +102,52 @@ Movement::Movement(string s, int match){
   int n = 0;
 
   if((match & M_ONE) == M_ONE){
-    i = 0;
-    isInt(s, i);
-    if(s.length() == i){
-      match1(s);
-      return;
-    }
-  }
-  if((match & M_INTERVAL) == M_INTERVAL){
-    i = 0;
-    isInt(s, i);
-    if(i+2 < s.length()
-       && s[i] == '.' && s[i+1] == '.'){
-      n = i;
-      i += 2;
+    try{
+      i = 0;
       isInt(s, i);
-
       if(s.length() == i){
-	match2(s, n);
+	match1(s);
 	return;
       }
-      else
-	throw IllegalEntry();
     }
+    catch(IllegalEntry e) {}
+  }
+
+  if((match & M_INTERVAL) == M_INTERVAL){
+    try{
+      i = 0;
+      isInt(s, i);
+      if(i+2 < s.length()
+	 && s[i] == '.' && s[i+1] == '.'){
+	n = i;
+	i += 2;
+	isInt(s, i);
+      }
+    }catch(IllegalEntry e) {}
+
+    if(s.length() == i){
+      match2(s, n);
+      return;
+    }
+    else
+      throw IllegalEntry();
   }
 
   if((match & M_LIST) == M_LIST) {
-    i = 0;
-    isInt(s, i);
     bool flag = true;
-    s.erase(remove(s.begin(), s.end(), ' '), s.end());
-
-    while(i < s.length()){
-      if(s[i++] != ',')
-	flag = false;
+    try{
+      i = 0;
       isInt(s, i);
-      n++;
-    }
+      s.erase(remove(s.begin(), s.end(), ' '), s.end());
+
+      while(i < s.length()){
+	if(s[i++] != ',')
+	  flag = false;
+	isInt(s, i);
+	n++;
+      }
+    }catch(IllegalEntry e) {}
+
     if(flag && s.length() == i){
       match3(s, n+1);
       return;
@@ -148,8 +157,10 @@ Movement::Movement(string s, int match){
   }
 
   if((match & M_PIOCHE) == M_PIOCHE){
-    if(s.compare("pioche") == 0)
+    if(s.compare("pioche") == 0){
       match4();
+      return;
+    }
   }
   throw IllegalEntry();
 
