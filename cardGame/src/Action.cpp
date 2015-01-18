@@ -22,7 +22,6 @@ void Action::setTo(CanAddPile& to, const CardContainer& destination){
 }
 
 void Action::countMovingCards(int n){
-  cout << movement.getSize() << endl;
   if(movement.getSize() != n)
     throw IllegalMovement("The number of cards must be : " + n );
 }
@@ -32,6 +31,7 @@ void Action::movingCardsFromTop(){
     if(movement[i] != i)
       throw IllegalMovement("Cards must be taken from the top of you hand");
 }
+
 
 void Action::apply(){
   to->add(from->remove(movement));

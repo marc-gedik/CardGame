@@ -4,8 +4,11 @@
 #include <iostream>
 #include "SimpleCard.hpp"
 
-enum FrenchSuit { Heart, Diamond, Club, Spade };
-enum FrenchRank { Deuce = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
+namespace fr {
+  enum FrenchSuit { Heart, Diamond, Club, Spade };
+  enum FrenchRank { Deuce = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace };
+}
+using namespace fr;
 
 extern FrenchSuit frenchSuits[];
 extern int nFrenchSuits;

@@ -35,6 +35,8 @@ public:
   void addTo(int, Card&);
   void addTo(int, const CardContainer&);
 
+  void discardTo(int, CardContainer&);
+
   bool emptyHand(int);
 
 };

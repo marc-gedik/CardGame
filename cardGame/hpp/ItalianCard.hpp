@@ -4,8 +4,16 @@
 #include <iostream>
 #include "SimpleCard.hpp"
 
-enum ItalianSuit { Spade, Bastoni, Denari, Coppe };
-enum ItalianRank { Ace = 1, Deuce, Three, Four, Five, Six, Seven, Fante, Cavallo, Re };
+namespace it {
+  enum ItalianSuit { Spade, Bastoni, Denari, Coppe };
+  enum ItalianRank { Ace = 1, Deuce, Three, Four, Five, Six, Seven, Fante, Cavallo, Re };
+}
+using namespace it;
+
+extern ItalianSuit italianSuits[];
+extern int nItalianSuits;
+extern ItalianRank italianRanks[];
+extern int nItalianRanks;
 
 std::ostream& operator<<(std::ostream&, const ItalianRank&);
 std::ostream& operator<<(std::ostream&, const ItalianSuit&);

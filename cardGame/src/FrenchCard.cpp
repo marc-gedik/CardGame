@@ -1,5 +1,7 @@
 #include "FrenchCard.hpp"
 
+using namespace fr;
+
 std::ostream& operator<<(std::ostream& os, const FrenchRank& rank){
   switch(rank){
   case Deuce: return os << "2";

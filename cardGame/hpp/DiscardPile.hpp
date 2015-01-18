@@ -21,8 +21,6 @@ public:
   virtual void add(Card &x);
   virtual void add(const CardContainer& c);
 
-
-
   CardContainer removeAll();
 
   Card& look();

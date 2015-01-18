@@ -8,16 +8,31 @@
 
 template <typename Suit, typename Rank>
 class SimpleCardsSettings : Settings {
-  friend class Card;
 private:
+  typedef pair<Suit, Rank> key;
   Suit trump;
-  std::map<Suit, int> values;
-public:
-  SimpleCardsSettings() {}
-  void setTrump(Suit&);
-  void setValue(Rank&, int);
-  virtual int compare(const Card&, const Card&) = 0;
+  map<key, int> values;
 
+public:
+
+  void setTrump(Suit suit){ trump = suit; }
+
+  void setValue(Suit suit, Rank rank, int value){
+    values.insert(make_pair(key(suit, rank), value));
+  }
+
+  virtual int compare(const Card& cardA, const Card& cardB){
+    if(cardA.getSuit() == trump)
+      if(cardB.getSuit() == trump)
+	return cardA.getRank() - cardB.getRank();
+      else
+	return 1;
+    else
+      if(cardB.getSuit() == trump)
+	return -1;
+      else
+	return cardA.getRank() - cardB.getRank();
+  }
 };
 
 #endif

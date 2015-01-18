@@ -1,12 +1,18 @@
 #include "GameFactory.hpp"
 
-const int GameFactory::nbChoice = 1;
-const string GameFactory::choice[] = { "Bataille" };
+#include "Bataille.hpp"
+#include "Scopa.hpp"
+
+const int GameFactory::nbChoice = 2;
+const string GameFactory::choice[] = { "Bataille", "Scopa" };
 
 Game* GameFactory::createGame(Movement game, Movement nbPlayer){
+  int n = nbPlayer[0];
   switch(game[0]){
   case 1:
-    return new Bataille(nbPlayer[0]);
+    return new Bataille(n);
+  case 2:
+    return new Scopa(n);
   default:
     throw;
   }

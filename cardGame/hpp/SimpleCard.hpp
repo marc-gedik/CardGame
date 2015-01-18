@@ -17,7 +17,7 @@ protected:
 public:
   SimpleCard() {}
   SimpleCard(Suit s, Rank r, bool hide = false)
-    : suit(s), rank(r), hidden(hide) {cout<<"simpleCard "<<r <<endl;}
+    : suit(s), rank(r), hidden(hide) {}
 
   virtual Card* clone() const { return new SimpleCard(*this); }
 
@@ -28,7 +28,7 @@ public:
   virtual bool isVisible() const {return !hidden;}
   virtual void flip() { hidden = !hidden; };
 
-  virtual ostream& print(ostream &os) { return os <<" "<< rank <<" "<<  suit<<" coucou";}
+  virtual ostream& print(ostream &os) { return os << rank << suit;}
 
 };
 

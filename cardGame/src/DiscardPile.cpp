@@ -28,7 +28,8 @@ ostream& DiscardPile::print(ostream& os){
   if(discardPile.size() == 0)
     return os << "Pile vide";
   else
-    return os << *discardPile.top();
+    for (std::stack<Card*> dump = discardPile; !dump.empty(); dump.pop())
+      os << *dump.top() << " ";
   return os;
 }
 

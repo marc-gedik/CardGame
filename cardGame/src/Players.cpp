@@ -58,6 +58,10 @@ void Players::addTo(int i, const CardContainer& cards){
   players[i]->add(cards);
 }
 
+void Players::discardTo(int i, CardContainer& cards){
+  players[i]->discard(cards);
+}
+
 bool Players::emptyHand(int i){
   return players[i]->emptyHand();
 }

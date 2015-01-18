@@ -5,7 +5,6 @@
 using namespace std;
 
 #include "Game.hpp"
-#include "Bataille.hpp"
 
 #include "Movement.hpp"
 

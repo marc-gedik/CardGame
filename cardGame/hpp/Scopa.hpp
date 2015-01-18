@@ -1,9 +1,9 @@
-#ifndef H_BATAILLE
-#define H_BATAILLE
+#ifndef H_SCOPA
+#define H_SCOPA
 
 #include "Game.hpp"
 
-class Bataille : public Game {
+class Scopa : public Game {
 private:
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
@@ -13,14 +13,12 @@ private:
   virtual void printHeader();
   virtual void play();
 
-  void play(int);
-  void giveAllTo(int);
-  void first();
-  void checkBataille();
+  void oneAction();
+
 
 public:
-  Bataille(int nbPlayers){
-    initGame("Fr", nbPlayers, 1, nbPlayers);
+  Scopa(int nbPlayers){
+    initGame("It", nbPlayers, 1, 1);
   }
 };
 

@@ -1,5 +1,7 @@
 #include "ItalianCard.hpp"
 
+using namespace it;
+
 std::ostream& operator<<(std::ostream& os, const ItalianRank& rank){
   switch(rank){
   case Ace    : return os << "A";
@@ -17,18 +19,18 @@ std::ostream& operator<<(std::ostream& os, const ItalianRank& rank){
   return os;
 }
 
-// ItalianRank italianRanks[] = { Deuce, Three, Four, Five, Six, Seven, Fante, Cavallo, Re };
-// int nbrItalianRank = 10;
+ItalianRank italianRanks[] = { Deuce, Three, Four, Five, Six, Seven, Fante, Cavallo, Re };
+int nItalianRanks = 10;
 
 std::ostream& operator<<(std::ostream& os, const ItalianSuit& suit){
   switch(suit){
-  case Spade  : return os << "_";
-  case Bastoni: return os << "_";
-  case Denari : return os << "_";
-  case Coppe  : return os << "_";
+  case Spade  : return os << "\xE2\x99\xA0";
+  case Bastoni: return os << "\xE2\x99\xA3";
+  case Denari : return os << "\xE2\x99\xA6";
+  case Coppe  : return os << "\xE2\x99\xA5";
   default     : return os << "_";
   }
 }
 
-// ItalianSuit italianSuits[] = { Spade, Bastoni, Denari, Coppe };
-// int nbrItalianSuit = 4;
+ItalianSuit italianSuits[] = { Spade, Bastoni, Denari, Coppe };
+int nItalianSuits = 4;
