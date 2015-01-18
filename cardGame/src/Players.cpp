@@ -54,6 +54,11 @@ void Players::addTo(int i, Card& card){
   players[i]->add(card);
 }
 
+void Players::add(Card& card){
+  players[actual]->add(card);
+}
+
+
 void Players::addTo(int i, const CardContainer& cards){
   players[i]->add(cards);
 }

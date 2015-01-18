@@ -44,7 +44,6 @@ void Scopa::oneAction(){
     action.countMovingCards(1);
     CardContainer cards = action.getFromCards();
     if(discardPiles->contains(cards)){
-      cout << "oui" << endl;
       players.discardTo(discardPiles->remove(cards));
       players.discardTo(cards);
     }

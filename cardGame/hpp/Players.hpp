@@ -33,6 +33,7 @@ public:
   void ask(Action&, int);
 
   void addTo(int, Card&);
+  void add(Card&);
   void addTo(int, const CardContainer&);
 
   void discardTo(int, CardContainer&);

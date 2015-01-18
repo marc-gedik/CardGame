@@ -19,7 +19,6 @@ public:
     int nbDiscardPile=1;
     cout<<"Jouons tous a UNO"<<endl;
     initGame("Uno", nbPlayers, 1, nbDiscardPile);
-    initPlayersHand();
     cout <<"Jeu uno initialise"<<endl;
 
   }
