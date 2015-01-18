@@ -1,6 +1,6 @@
 #include "UnoCard.hpp"
 
-using namespace uno;
+using namespace uno {
 std::ostream& operator<<(std::ostream& os, const UnoRank& rank){
   switch(rank){
   case Zero	 : return os << "O";
@@ -37,3 +37,4 @@ std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
 
 UnoSuit unoSuits[]= { Blue, Green, Red, Yellow, NoColor };
 int nUnoSuits = 5;
+}
