@@ -17,9 +17,10 @@ int Uno::cardsPerPlayer(int nbPlayer){
 }
 
 bool Uno::isFinished(){
-  for(int i = 0; i < players.getNbPlayers(); i++)
+  for(int i = 0; i < players.getNbPlayers(); i++){
     if(players.emptyHand(i))
       return true;
+  }
   return false;
 }
 
@@ -36,49 +37,28 @@ void Uno::initPlayersHand(){
       Card& card = deck->deal();
       players.addTo(i, card);
     }
-}
-
-void Uno::first(){
-  Action action;
-  action.setTo(discardPiles[players.getActualPlayerId()], CardContainer());
-  players.ask(action, Movement::M_ONE);
-
-  try{
-    action.countMovingCards(1);
-    action.movingCardsFromTop();
-    action.apply();
-  }
-  catch(IllegalMovement e){
-    cout << e.what() << endl;
-    first();
-  }
+  pioche= new Pioche(deck->removeAll());
+  discardPiles->add(pioche->draw());
 }
 
 
-void Uno::giveAllTo(int k){
-  for(int i = 0; i < players.getNbPlayers(); i++)
-    players.addTo(k, discardPiles[i].removeAll());
-}
 
-void Uno::play(int n){
-  players.setActualPlayer(0);
 
-  do{
-    for(int i = 0; i < n; i++)
-      first();
-    players.next();
-  }
-  while (players.getActualPlayerId() != 0);
-
-  for(int i = 0; i < players.getNbPlayers(); i++){
-    cout << discardPiles[i];
-    if(i+1 < players.getNbPlayers())
-      cout << " vs ";
-  }
-  cout << endl;
-  //checkUno();
-}
 
 void Uno::play(){
-  play(1);
+  cout<<"first tour"<<endl;
+
+  Action a;
+  a.setTo(*discardPiles, CardContainer());
+
+  players.ask(a,Movement::M_PIOCHE);
+
+  if(a.isPioche()){
+    cout<<"j'ai piocher"<<endl;
+
+  }
+  // players.add(pioche->draw())
+  /*
+   players.next();
+  */
 }

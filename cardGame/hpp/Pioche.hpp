@@ -11,7 +11,7 @@ private:
   stack<Card*> pioche ;
 
 public:
-  Pioche(CardContainer&);
+  Pioche(CardContainer);
 
   Card& draw();
 };

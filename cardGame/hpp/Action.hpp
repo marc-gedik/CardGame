@@ -27,6 +27,8 @@ public:
 
   void apply();
 
+  bool isPioche();
+  
 };
 
 #endif

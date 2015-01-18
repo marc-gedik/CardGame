@@ -148,6 +148,7 @@ Movement::Movement(string s, int match){
   }
 
   if((match & M_PIOCHE) == M_PIOCHE){
+    cout<<"testpioche"<<endl;
     if(s.compare("pioche") == 0)
       match4();
   }

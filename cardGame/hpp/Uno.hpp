@@ -3,7 +3,7 @@
 
 #include "GameWithPioche.hpp"
 
-class Uno : public Game {
+class Uno : public GameWithPioche {
 private:
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
@@ -13,9 +13,6 @@ private:
   virtual void printHeader();
   virtual void play();
 
-  void play(int);
-  void giveAllTo(int);
-  void first();
 
 public:
   Uno(int nbPlayers){
