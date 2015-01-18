@@ -33,6 +33,9 @@ public:
 
   bool isPioche();
 
+  bool sameRank();
+
+  
 };
 
 #endif

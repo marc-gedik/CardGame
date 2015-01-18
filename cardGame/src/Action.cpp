@@ -26,6 +26,19 @@ void Action::setTo(DiscardPile& to, const CardContainer& destination){
   this->destination = destination;
 }
 
+
+bool Action::sameRank(){
+  moving = true;
+  movingCards = from->remove(movement);
+  for(int i=0; i<  movingCards.getSize(); i++){
+    if(to->look() !=  movingCards.getElement(i))
+      from->add(movingCards);
+      return false;
+  }
+  moving= false;
+  return true;
+}
+
 void Action::countMovingCards(int n){
   if(movement.getSize() != n)
     throw IllegalMovement("The number of cards must be : " + n );
