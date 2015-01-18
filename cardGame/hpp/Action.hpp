@@ -3,16 +3,17 @@
 
 #include "CardContainer.hpp"
 #include "CanAddRemovePile.hpp"
-#include "CanAddPile.hpp"
+#include "DiscardPile.hpp"
 #include "Movement.hpp"
 
 class Action {
 private:
   CanAddRemovePile *from;
-  CanAddPile * to;
+  DiscardPile * to;
   CardContainer movingCards, destination;
   Movement movement;
 
+  bool moving;
   void checkMovement();
 public:
   Action(){}
@@ -20,18 +21,18 @@ public:
 
   void setFrom(CanAddRemovePile& , Movement&);
 
-  void setTo(CanAddPile&, const CardContainer&);
+  void setTo(DiscardPile&, const CardContainer&);
 
-  bool isPioche();
-
-  void countMovingCards(int n);
+  void countMovingCards(int);
 
   void movingCardsFromTop();
+
+  CardContainer& getFromCards();
 
   void apply();
 
   bool isPioche();
-  
+
 };
 
 #endif

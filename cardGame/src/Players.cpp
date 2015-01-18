@@ -62,6 +62,10 @@ void Players::discardTo(int i, CardContainer& cards){
   players[i]->discard(cards);
 }
 
+void Players::discardTo(CardContainer cards){
+  players[actual]->discard(cards);
+}
+
 bool Players::emptyHand(int i){
   return players[i]->emptyHand();
 }

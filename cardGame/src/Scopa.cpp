@@ -39,9 +39,17 @@ void Scopa::oneAction(){
   Action action;
   action.setTo(*discardPiles, CardContainer());
   players.ask(action, Movement::M_ONE);
+
   try{
     action.countMovingCards(1);
-    action.apply();
+    CardContainer cards = action.getFromCards();
+    if(discardPiles->contains(cards)){
+      cout << "oui" << endl;
+      players.discardTo(discardPiles->remove(cards));
+      players.discardTo(cards);
+    }
+    else
+      action.apply();
   }
   catch(IllegalMovement e){
     cout << e.what() << endl;

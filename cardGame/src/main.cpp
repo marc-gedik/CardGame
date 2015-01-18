@@ -27,7 +27,7 @@ int main(){
 
   cout << "Choice : ";
   cin >> query;
-  Movement m1(query, Movement::M_ONE | Movement::M_PIOCHE);
+  Movement m1(query, Movement::M_ONE);
 
   cout << "Number of player : ";
   cin >> query;

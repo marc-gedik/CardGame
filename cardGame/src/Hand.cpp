@@ -27,6 +27,7 @@ CardContainer Hand::remove(Movement& movement){
 	break;
       }
       k++;
+      it++;
     }
     if(!find)
       throw "Todo Not find";

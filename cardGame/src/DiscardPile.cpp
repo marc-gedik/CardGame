@@ -22,12 +22,40 @@ CardContainer DiscardPile::removeAll(){
   return CardContainer(tabCard, size);
 }
 
-Card& DiscardPile::remove(Card& c){
-  return c;
+bool DiscardPile::contains(CardContainer cards){
+  if(cards.getSize() == 1){
+    Card& c = cards.getElement(0);
+
+    int size = discardPile.size();
+    list<Card*>::iterator it = discardPile.begin();
+
+    for(int i = 0; i < size; i++)
+      if (**it == c)
+	return true;
+  }
+  return false;
+}
+
+CardContainer DiscardPile::remove(CardContainer cards){
+  if(cards.getSize() == 1){
+    Card& c = cards.getElement(0);
+    int size = discardPile.size();
+    list<Card*>::iterator it = discardPile.begin();
+
+    for(int i = 0; i < size; it++,i++)
+      if (**it == c){
+	Card* card = *it;
+	discardPile.erase(it);
+	return CardContainer(*card);
+      }
+    return cards;
+  }
+  else
+    throw "Not needed";
 }
 
 Card& DiscardPile::look(){
- r feturn *discardPile.front();
+  return *discardPile.front();
 }
 
 ostream& DiscardPile::print(ostream& os){

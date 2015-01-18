@@ -17,9 +17,10 @@ bool Action::isPioche(){
 void Action::setFrom(CanAddRemovePile& from, Movement& movement){
   this->movement = movement;
   this->from = &from;
+  checkMovement();
 }
 
-void Action::setTo(CanAddPile& to, const CardContainer& destination){
+void Action::setTo(DiscardPile& to, const CardContainer& destination){
   this->to = &to;
   this->destination = destination;
 }
@@ -35,11 +36,16 @@ void Action::movingCardsFromTop(){
       throw IllegalMovement("Cards must be taken from the top of you hand");
 }
 
-bool Action::isPioche(){
-  return movement.isPioche();
+CardContainer& Action::getFromCards(){
+  moving = true;
+  movingCards = from->remove(movement);
+  return movingCards;
 }
-  
 
 void Action::apply(){
-  to->add(from->remove(movement));
+  if(moving)
+    to->add(movingCards);
+  else
+    to->add(from->remove(movement));
+
 }
