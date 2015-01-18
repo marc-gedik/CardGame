@@ -17,9 +17,12 @@ private:
 public:
   Action(){}
 
+
   void setFrom(CanAddRemovePile& , Movement&);
 
   void setTo(CanAddPile&, const CardContainer&);
+
+  bool isPioche();
 
   void countMovingCards(int n);
 

@@ -1,7 +1,7 @@
 #include "DiscardPile.hpp"
 
 void DiscardPile::add(Card &x){
-  discardPile.push(&x);
+  discardPile.push_front(&x);
 }
 
 void DiscardPile::add(const CardContainer& c){
@@ -13,23 +13,32 @@ CardContainer DiscardPile::removeAll(){
   int size = discardPile.size();
   Card** tabCard = new Card *[size];
 
+  list<Card*>::iterator it = discardPile.begin();
+
   for(int i = 0; i < size; i++){
-    tabCard[i] = discardPile.top();
-    discardPile.pop();
+    tabCard[i] = *it;
+    it = discardPile.erase(it);
   }
   return CardContainer(tabCard, size);
 }
 
+Card& DiscardPile::remove(Card& c){
+  return c;
+}
+
 Card& DiscardPile::look(){
-  return *discardPile.top();
+  return *discardPile.front();
 }
 
 ostream& DiscardPile::print(ostream& os){
-  if(discardPile.size() == 0)
-    return os << "Pile vide";
-  else
-    for (std::stack<Card*> dump = discardPile; !dump.empty(); dump.pop())
-      os << *dump.top() << " ";
+  list<Card*>::iterator
+    itCurrent = discardPile.begin(),
+    itEnd = discardPile.end();
+
+  while(itCurrent != itEnd){
+    os << *(*itCurrent) << " ";
+    itCurrent++;
+  }
   return os;
 }
 

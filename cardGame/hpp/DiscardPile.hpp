@@ -1,7 +1,8 @@
 #ifndef H_DISCARD_PILE
 #define H_DISCARD_PILE
 
-#include <stack>
+#include <list>
+#include <iostream>
 
 #include "Card.hpp"
 #include "CardContainer.hpp"
@@ -12,7 +13,7 @@ using namespace std;
 class DiscardPile : public CanAddPile {
 
 private:
-  stack<Card*> discardPile;
+  list<Card*> discardPile;
 
 public:
 
@@ -20,6 +21,8 @@ public:
 
   virtual void add(Card &x);
   virtual void add(const CardContainer& c);
+
+  Card& remove(Card&);
 
   CardContainer removeAll();
 

@@ -11,6 +11,9 @@ void Action::checkMovement(){
   //    catch(... e){ throw IllegalEntry }
 }
 
+bool Action::isPioche(){
+  return movement.isPioche();
+}
 void Action::setFrom(CanAddRemovePile& from, Movement& movement){
   this->movement = movement;
   this->from = &from;
