@@ -40,6 +40,20 @@ bool Action::sameRank(){
   return true;
 }
 
+
+bool Action::sameColor(){
+  moving = true;
+  movingCards = from->remove(movement);
+  for(int i=0; i<  movingCards.getSize(); i++){
+    if((movingCards.getElement(i)).sameSuit((to->look()))){
+      moving= false;
+      from->add(movingCards);
+      return false;
+    }
+  }
+  return true;
+}
+
 void Action::countMovingCards(int n){
   if(movement.getSize() != n)
     throw IllegalMovement("The number of cards must be : " + n );

@@ -30,7 +30,7 @@ public:
 
   bool operator!=(const Card&) const;
   bool operator==(const Card&) const;
-
+  bool sameSuit();
   int compare(const Card&, const Settings&);
 
   friend ostream& operator<<(ostream&, Card&);
