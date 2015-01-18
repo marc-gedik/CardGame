@@ -1,6 +1,7 @@
 #include "GameFactory.hpp"
 
 #include "Bataille.hpp"
+#include "Uno.hpp"
 #include "Scopa.hpp"
 
 const int GameFactory::nbChoice = 3;
@@ -13,7 +14,7 @@ Game* GameFactory::createGame(Movement game, Movement nbPlayer){
     return new Bataille(n);
   case 2:
     return new Uno(n);
-  case 2:
+  case 3:
     return new Scopa(n);
   default:
     throw;
