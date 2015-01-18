@@ -30,7 +30,6 @@ public:
 
   void apply();
 
-  bool isPioche();
   
 };
 

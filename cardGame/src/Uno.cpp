@@ -51,13 +51,13 @@ void Uno::play(){
   Action a;
   a.setTo(*discardPiles, CardContainer());
 
-  players.ask(a,Movement::M_PIOCHE);
+  players.ask(a,Movement::M_PIOCHE | Movement::M_ONE);
 
   if(a.isPioche()){
     cout<<"j'ai piocher"<<endl;
+    players.add(pioche->draw());
 
   }
-  // players.add(pioche->draw())
   /*
    players.next();
   */
