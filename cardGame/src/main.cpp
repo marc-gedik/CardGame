@@ -20,6 +20,7 @@ int main(){
   cout << "---------------" << endl;
   cout << "-- Card Game --" << endl;
   cout << "---------------" << endl;
+
   cout << gameFactory << endl;
 
   string query;
@@ -33,7 +34,6 @@ int main(){
   Movement m2(query, Movement::M_ONE);
 
   gameFactory.createGame(m1, m2)->run();
-
 
   return 0;
 }
