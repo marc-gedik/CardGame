@@ -38,7 +38,9 @@ int main(){
   //d.createDeck("uno", 108);
 
   CardFactory c;
-  CardContainer cards = c.createCards("Uno");
+  c.createCards("Uno");
+  // c.createCards("Fr");
+   
   //  cout << cards.getElement(1) << endl;
   return 0;
 }

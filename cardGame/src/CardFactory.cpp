@@ -8,19 +8,18 @@ CardContainer CardFactory::createCards(Suit* suits, int nSuits, Rank* ranks, int
   Card** cards = new Card * [n];
 
   for(int i = 0; i < nSuits; i++)
-    for(int j = 0; j < nRanks; j++)
+    for(int j = 0; j < nRanks; j++){
       cards[i*nRanks + j] = new SimpleCard<Suit, Rank>(suits[i], ranks[j]);
-
+      cout<< *cards[i*nRanks + j]<<endl;
+    }
   return CardContainer(cards, n);
 }
 
 template <typename Suit, typename Rank>
 CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, int nRanks){
-  int n = nSuits * nRanks;
   int indice =0;
-  Card** cards = new Card * [108];
-
-  //creation carte 0-9-+2-skip-reverse-skip pour charque couleur
+  int nbCard = 108;
+  Card** cards = new Card * [nbCard];
   for(int i = 0; i < nSuits-1; i++){
     cards[indice] = new SimpleCard<Suit, Rank>(suits[i], uno::Zero);
     indice ++;
@@ -28,6 +27,7 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
 
   for(int i = 1; i < nRanks-2; i++){
     for(int j = 0; j < nSuits-1; j++){
+      cout <<"facto "<<ranks[i]<<endl;
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
       indice++;
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
@@ -41,10 +41,13 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
     cards[indice] = new SimpleCard<Suit, Rank>(uno::NoColor, uno::SuperJoker);
     indice ++;
   }
+  /*
+  for(int i = 0; i < 108; i++){
+    cout << *cards[i]<<endl ;
+    }*/
 
-  for(int i = 0; i < 108; i ++)
-    cout << *cards[i] << endl;
-  return CardContainer(cards, 108);
+ 
+  return CardContainer(cards, nbCard);
 }
 
 CardContainer CardFactory::createCards(string s){

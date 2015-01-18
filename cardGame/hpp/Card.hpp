@@ -8,7 +8,7 @@ using namespace std;
 class Settings;
 
 class Card {
-protected:
+public:
   virtual int getRank() const = 0;
   virtual int getSuit() const = 0;
 
@@ -17,6 +17,8 @@ protected:
   virtual void flip() = 0;
 
   virtual ostream& print(ostream&) = 0;
+
+
 public:
   virtual Card* clone() const = 0;
 
