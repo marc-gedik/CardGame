@@ -34,6 +34,7 @@ public:
   bool isPioche();
 
   bool sameRank();
+  bool sameColor();
 
   
 };

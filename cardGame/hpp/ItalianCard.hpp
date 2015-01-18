@@ -7,8 +7,6 @@
 namespace it {
   enum ItalianSuit { Spade, Bastoni, Denari, Coppe };
   enum ItalianRank { Ace = 1, Deuce, Three, Four, Five, Six, Seven, Fante, Cavallo, Re };
-}
-using namespace it;
 
 extern ItalianSuit italianSuits[];
 extern int nItalianSuits;
@@ -17,6 +15,8 @@ extern int nItalianRanks;
 
 std::ostream& operator<<(std::ostream&, const ItalianRank&);
 std::ostream& operator<<(std::ostream&, const ItalianSuit&);
+
+}
 
 #define ItalianCard SimpleCard<ItalianSuit, ItalianRank>
 

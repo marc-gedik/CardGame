@@ -10,13 +10,13 @@ namespace uno {
 
 
 
-extern UnoSuit unoSuits[];
-extern int nUnoSuits;
-extern UnoRank unoRanks[];
-extern int nUnoRanks;
+  extern UnoSuit unoSuits[];
+  extern int nUnoSuits;
+  extern UnoRank unoRanks[];
+  extern int nUnoRanks;
 
-std::ostream& operator<<(std::ostream&, const UnoRank&);
-std::ostream& operator<<(std::ostream&, const UnoSuit&);
+  std::ostream& operator<<(std::ostream&, const UnoRank&);
+  std::ostream& operator<<(std::ostream&, const UnoSuit&);
 
 }
 
