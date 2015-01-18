@@ -38,10 +38,8 @@ void Uno::initPlayersHand(){
       players.addTo(i, card);
     }
   pioche= new Pioche(deck->removeAll());
-  cout<<"1 dicard Pile : "<<*discardPiles<<endl;
   discardPiles->add(pioche->draw());
-  cout<<"2 dicard Pile : "<<*discardPiles<<endl;
- 
+
 }
 
 
@@ -49,9 +47,6 @@ void Uno::initPlayersHand(){
 
 
 void Uno::play(){
-  cout<<"first tour"<<endl;
-  cout<<"dicard Pile : "<<*discardPiles<<endl;
-
   Action a;
   a.setTo(*discardPiles, CardContainer());
   players.ask(a,Movement::M_PIOCHE | Movement::M_ONE);
@@ -64,9 +59,8 @@ void Uno::play(){
   else{
     cout<<"je choisi une carte"<<endl;
     a.apply();
-  
     players.next();
-  }  
+  }
 }
 
 

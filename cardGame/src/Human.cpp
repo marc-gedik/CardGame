@@ -11,7 +11,6 @@ void Human::ask(Action& action, int what){
   cout << hand << endl;
 
   cin >> query;
-
   try{
     movement = Movement(query, what);
     action.setFrom(hand, movement);

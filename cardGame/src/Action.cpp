@@ -12,12 +12,13 @@ void Action::checkMovement(){
 }
 
 bool Action::isPioche(){
-  return movement.isPioche();
+ return movement.isPioche();
 }
 void Action::setFrom(CanAddRemovePile& from, Movement& movement){
   this->movement = movement;
   this->from = &from;
-  checkMovement();
+  if(!isPioche())
+    checkMovement();
 }
 
 void Action::setTo(DiscardPile& to, const CardContainer& destination){
