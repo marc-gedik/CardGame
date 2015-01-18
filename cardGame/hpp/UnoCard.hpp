@@ -20,6 +20,6 @@ std::ostream& operator<<(std::ostream&, const UnoRank&);
 std::ostream& operator<<(std::ostream&, const UnoSuit&);
 
 
-#define UnoCard SimpleCard<UnoSuit, UnoRank>
+#define UnoCard SimpleCard<uno::UnoSuit, uno::UnoRank>
 
 #endif

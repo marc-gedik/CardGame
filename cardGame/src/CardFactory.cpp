@@ -27,7 +27,7 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
 
   for(int i = 1; i < nRanks-2; i++){
     for(int j = 0; j < nSuits-1; j++){
-      cout <<"facto "<<ranks[i]<<endl;
+      //cout <<"facto "<<ranks[i]<<endl;
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
       indice++;
       cards[indice] = new SimpleCard<Suit, Rank>(suits[j], ranks[i]);
@@ -44,8 +44,8 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
   /*
   for(int i = 0; i < 108; i++){
     cout << *cards[i]<<endl ;
-    }*/
-
+    }
+  */
  
   return CardContainer(cards, nbCard);
 }

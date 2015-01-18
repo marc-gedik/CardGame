@@ -3,7 +3,10 @@
 
 #include "Card.hpp"
 
+
 class Settings {
+
+  friend class Card;
 public:
   virtual int compare(const Card&, const Card&) = 0;
 };

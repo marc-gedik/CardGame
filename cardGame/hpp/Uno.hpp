@@ -1,9 +1,9 @@
 #ifndef H_UNO
 #define H_UNO
 
-#include "Game.hpp"
+#include "GameWithPioche.hpp"
 
-class Bataille : public Game {
+class Uno : public Game {
 private:
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
@@ -16,12 +16,15 @@ private:
   void play(int);
   void giveAllTo(int);
   void first();
-  void checkBataille();
 
 public:
-  Bataille(int nbPlayers){
-    initGame("Fr", nbPlayers, 1, nbPlayers);
+  Uno(int nbPlayers){
+    int nbDiscardPile=1;
+    cout<<"Jouons tous a UNO"<<endl;
+    initGame("Uno", nbPlayers, 1, nbDiscardPile);
     initPlayersHand();
+    cout <<"Jeu uno initialise"<<endl;
+
   }
 };
 

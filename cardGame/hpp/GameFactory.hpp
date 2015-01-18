@@ -6,6 +6,7 @@ using namespace std;
 
 #include "Game.hpp"
 #include "Bataille.hpp"
+#include "Uno.hpp"
 
 #include "Movement.hpp"
 
