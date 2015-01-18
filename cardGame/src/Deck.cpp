@@ -27,3 +27,8 @@ void Deck::shuffle(){
 int Deck::getSize(){
   return nbCards;
 }
+
+
+CardContainer Deck::removeAll(){
+  return CardContainer(this->cards,this->nbCards);
+}

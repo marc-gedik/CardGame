@@ -6,9 +6,12 @@
 
 
 class GameWithPioche : public Game {
-private:
+protected:
   Pioche* pioche;
 
+private:
+
+  
 };
 
 #endif

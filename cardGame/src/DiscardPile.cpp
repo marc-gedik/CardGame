@@ -27,7 +27,7 @@ Card& DiscardPile::remove(Card& c){
 }
 
 Card& DiscardPile::look(){
-  return *discardPile.front();
+ r feturn *discardPile.front();
 }
 
 ostream& DiscardPile::print(ostream& os){

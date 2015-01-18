@@ -35,6 +35,10 @@ void Action::movingCardsFromTop(){
       throw IllegalMovement("Cards must be taken from the top of you hand");
 }
 
+bool Action::isPioche(){
+  return movement.isPioche();
+}
+  
 
 void Action::apply(){
   to->add(from->remove(movement));

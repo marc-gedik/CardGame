@@ -20,6 +20,7 @@ public:
 
   void shuffle();
 
+  CardContainer removeAll();
   int getSize();
 };
 
