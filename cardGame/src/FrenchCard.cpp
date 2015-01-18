@@ -1,6 +1,6 @@
 #include "FrenchCard.hpp"
 
-using namespace fr;
+namespace fr{
 
 std::ostream& operator<<(std::ostream& os, const FrenchRank& rank){
   switch(rank){
@@ -36,3 +36,5 @@ std::ostream& operator<<(std::ostream& os, const FrenchSuit& suit){
 
 FrenchSuit frenchSuits[] = { Heart, Diamond, Club, Spade };
 int nFrenchSuits = 4;
+
+}

@@ -31,11 +31,12 @@ bool Action::sameRank(){
   moving = true;
   movingCards = from->remove(movement);
   for(int i=0; i<  movingCards.getSize(); i++){
-    if(to->look() !=  movingCards.getElement(i))
+    if(to->look() !=  movingCards.getElement(i)){
+      moving= false;
       from->add(movingCards);
       return false;
+    }
   }
-  moving= false;
   return true;
 }
 

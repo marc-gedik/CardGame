@@ -41,7 +41,7 @@ CardContainer CardFactory::createUnoCards(Suit* suits, int nSuits, Rank* ranks, 
 }
 
 CardContainer CardFactory::createCards(string s){
-  if(s == "Fr") return createCards(frenchSuits, nFrenchSuits, frenchRanks, nFrenchRanks);
+  if(s == "Fr") return createCards(fr::frenchSuits, fr::nFrenchSuits, fr::frenchRanks, fr::nFrenchRanks);
   if(s == "It") return createCards(italianSuits, nItalianSuits, italianRanks, nItalianRanks);
   if(s == "Uno") return createUnoCards(unoSuits, nUnoSuits, unoRanks, nUnoRanks);
   throw s + " is not a type of card";
