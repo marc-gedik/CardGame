@@ -76,25 +76,21 @@ bool Action::isReverse(){
 }
 
 
-
 bool Action::isSkip(){
-  cout<<"rank: "<< (to->look()).getRank()<<endl;
-  return true;
+  if((to->look()).getRank()==12)
+    return true;
+  return false;
 }
-
-
 
 
 
 bool Action::isJoker(){
-  cout<<"rank : "<< (to->look()).getRank()<<endl;
-  return true;
+ return  false;
 }
 
 
 bool Action::isSuperJoker(){
-  cout<<"rank: "<< (to->look()).getRank()<<endl;
-  return true;
+  return false;
 }
 
 bool Action::sameRank(){
