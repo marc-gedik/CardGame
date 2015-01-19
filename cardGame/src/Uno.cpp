@@ -45,24 +45,26 @@ void Uno::initPlayersHand(){
 void Uno::play(){
   std::system("clear");
   cout<<"\nTable : "<<*discardPiles<<endl;
-
   Action a;
   a.setTo(*discardPiles, CardContainer());
 
   
-  // //si le sommet de la pile est +2: piocher 2fois
+  //si le sommet de la pile est +2: piocher 2fois
   if(a.isPlusTwo()){
     players.ask(a,Movement::M_PIOCHE,2);
     players.add(pioche->draw());
     players.ask(a,Movement::M_PIOCHE);
     players.add(pioche->draw());
+    players.ask(a,Movement::M_PIOCHE);
     //offrir la possibilité de jouer les cartes pioché sinon passer son tour.
     players.next();
   }
+  else if(a.isReverse()){
+    cout<<"vous passez votre tour.."<<endl;
+    players.reverseOrder();
+    players.next();
+  }
   
-  // if(a.isReverse()){
-  //   players.next();
-  // }
   
   // if(a.isSuperJoker()){
   //   players.next();
@@ -72,21 +74,21 @@ void Uno::play(){
   // if(a.isSkip()){
   //   players.next();
   // }
-  
-  players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
-  if(a.isPioche()){
-    players.add(pioche->draw());
-    players.next();
-  }
   else{
-    cout<<"je choisi une carte"<<endl;
-    
-    if(a.sameRank() || a.sameColor()){
-      a.apply();
+
+    players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
+    if(a.isPioche()){
+      players.add(pioche->draw());
       players.next();
     }
-    else
-      a.reset();
+    else{    
+      if(a.sameRank() || a.sameColor()){
+	a.apply();
+      players.next();
+      }
+      else
+	a.reset();
+    }
   }
 }
 

@@ -69,6 +69,13 @@ bool Action::isPlusTwo(){
 }
 
 
+bool Action::isReverse(){
+  if((to->look()).getRank()==11)
+    return true;
+  return false;
+}
+
+
 
 bool Action::isSkip(){
   cout<<"rank: "<< (to->look()).getRank()<<endl;
@@ -77,10 +84,6 @@ bool Action::isSkip(){
 
 
 
-bool Action::isReverse(){
-  cout<<"rank: "<< (to->look()).getRank()<<endl;
-  return true;
-}
 
 
 bool Action::isJoker(){
