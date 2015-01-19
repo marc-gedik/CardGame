@@ -14,7 +14,7 @@ Players::Players(int n, bool humans, int ord)
 }
 
 Player& Players::next(){
-  actual = (actual + order) % nbPlayers;
+  actual = (actual + order + nbPlayers) % nbPlayers;
   return *players[actual];
 }
 

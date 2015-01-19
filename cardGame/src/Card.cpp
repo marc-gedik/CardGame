@@ -13,7 +13,6 @@ bool Card::operator!=(const Card& card) const { return getRank() != card.getRank
 bool Card::operator==(const Card& card) const { return getRank() == card.getRank(); }
 
 int Card::compare(const Card& card, const Settings& settings) const{
-  cout <<"c----"<<endl;
   return settings.compare(*this, card);
 }
 
