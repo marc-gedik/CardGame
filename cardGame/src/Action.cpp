@@ -103,6 +103,19 @@ bool Action::sameRank(){
 
 
 
+bool Action::sameColor(int color){
+  if(!moving){
+    moving = true;
+    movingCards = from->remove(movement);
+  }
+  for(int i=0; i<  movingCards.getSize(); i++)
+    if(!(movingCards.getElement(i).getSuit())==color)
+      return false;
+
+  return true;
+}
+
+
 bool Action::sameColor(){
   if(!moving){
     cout << "ok" << endl;

@@ -5,6 +5,7 @@
 
 class Uno : public GameWithPioche {
 private:
+  int colorOfPile;
   virtual void checkNumberOfPlayers(int);
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;

@@ -46,14 +46,23 @@ void Uno::initPlayersHand(){
 
 void Uno::testSameRankOrColor(Action a){
    players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
-    if(a.isPioche()){
+  string query;
+   if(a.isPioche()){
       players.add(pioche->draw());
       players.next();
     }
-    else{    
-      if(a.sameRank() || a.sameColor()){
+    else{
+       if(a.sameColor(4)){
+	 colorOfPile=  (discardPiles->look()).getSuit();
+	 cin >> query;
+	 Movement movement = Movement(query, Movement::M_ONE);
+	 if(movement[0]>=0 && movement[0]<=3 )
+	   colorOfPile = movement[0];;
+	 
+       }
+      if(a.sameRank() || a.sameColor(colorOfPile)){
 	a.apply();
-      players.next();
+	players.next();
       }
       else
 	a.reset();
@@ -90,9 +99,7 @@ void Uno::play(){
     testSameRankOrColor(a);
   }
 
-
   else if(a.isJoker()){
-    players.next();
     testSameRankOrColor(a);	
    }
 

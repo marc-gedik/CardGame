@@ -9,7 +9,6 @@ namespace uno {
   enum UnoRank { Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine, PlusTwo, Reverse, Skip, Joker, SuperJoker };
 
 
-
   extern UnoSuit unoSuits[];
   extern int nUnoSuits;
   extern UnoRank unoRanks[];

@@ -40,6 +40,7 @@ public:
 
   bool sameRank();
   bool sameColor();
+  bool sameColor(int color);
 
   void reset();
 };
