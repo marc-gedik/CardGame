@@ -4,6 +4,7 @@
 #include "Uno.hpp"
 #include "Scopa.hpp"
 #include "Briscola.hpp"
+#include "HuitAmericain.hpp"
 
 const int GameFactory::nbChoice = 4;
 const string GameFactory::choice[] = { "Bataille", "Uno", "Scopa", "Briscola" };
@@ -19,6 +20,8 @@ Game* GameFactory::createGame(Movement game, Movement nbPlayer){
     return new Scopa(n);
   case 4:
     return new Briscola(n);
+  case 5:
+    return new HuitAmericain(n);
   default:
     throw;
   }
