@@ -28,32 +28,6 @@ void Action::setTo(DiscardPile& to, const CardContainer& destination){
 }
 
 
-bool Action::sameRank(){
-  if(!moving){
-    moving = true;
-    movingCards = from->remove(movement);
-  }
-  for(int i=0; i < movingCards.getSize(); i++)
-    if(to->look() !=  movingCards.getElement(i))
-      return false;
-
-  return true;
-}
-
-
-bool Action::sameColor(){
-  if(!moving){
-    cout << "ok" << endl;
-    moving = true;
-    movingCards = from->remove(movement);
-  }
-  for(int i=0; i<  movingCards.getSize(); i++)
-    if(!(movingCards.getElement(i)).sameSuit((to->look())))
-      return false;
-
-  return true;
-}
-
 void Action::countMovingCards(int n){
   if(movement.getSize() != n)
     throw IllegalMovement("The number of cards must be : " + n );
@@ -82,4 +56,67 @@ void Action::apply(){
 void Action::reset(){
   moving = false;
   from->add(movingCards);
+}
+
+
+
+
+
+bool Action::isPlusTwo(){
+  cout<<"rank du haut de la pile: "<< (to->look()).getRank()<<endl;
+  return true;
+}
+
+
+
+bool Action::isSkip(){
+  cout<<"rank: "<< (to->look()).getRank()<<endl;
+  return true;
+}
+
+
+
+bool Action::isReverse(){
+  cout<<"rank: "<< (to->look()).getRank()<<endl;
+  return true;
+}
+
+
+bool Action::isJoker(){
+  cout<<"rank : "<< (to->look()).getRank()<<endl;
+  return true;
+}
+
+
+bool Action::isSuperJoker(){
+  cout<<"rank: "<< (to->look()).getRank()<<endl;
+  return true;
+}
+
+bool Action::sameRank(){
+  if(!moving){
+    moving = true;
+    movingCards = from->remove(movement);
+  }
+  for(int i=0; i < movingCards.getSize(); i++)
+    if(to->look() !=  movingCards.getElement(i))
+      return false;
+
+  return true;
+}
+
+
+
+
+bool Action::sameColor(){
+  if(!moving){
+    cout << "ok" << endl;
+    moving = true;
+    movingCards = from->remove(movement);
+  }
+  for(int i=0; i<  movingCards.getSize(); i++)
+    if(!(movingCards.getElement(i)).sameSuit((to->look())))
+      return false;
+
+  return true;
 }

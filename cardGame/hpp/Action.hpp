@@ -32,6 +32,11 @@ public:
   void apply();
 
   bool isPioche();
+  bool isPlusTwo();
+  bool isSkip();
+  bool isReverse();
+  bool isJoker();
+  bool isSuperJoker();
 
   bool sameRank();
   bool sameColor();
