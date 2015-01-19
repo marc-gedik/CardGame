@@ -16,6 +16,7 @@ private:
   virtual void printHeader();
   void deal();
   void oneAction();
+  void initSettings();
   virtual void play();
 
   SameOrTrumpSettings settings;
@@ -24,6 +25,7 @@ public:
   Briscola(int nbPlayers){
     int nbDiscardPile = nbPlayers;
     initGame("It", nbPlayers, 1, nbDiscardPile);
+    initSettings();
   }
 };
 

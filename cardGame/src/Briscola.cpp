@@ -12,15 +12,32 @@ int  Briscola::cardsPerPlayer(int){
   return 3;
 }
 
+void Briscola::initSettings(){
+  settings.setValue(it::Deuce  ,1);
+  settings.setValue(it::Four   ,2);
+  settings.setValue(it::Five   ,3);
+  settings.setValue(it::Six    ,4);
+  settings.setValue(it::Seven  ,5);
+  settings.setValue(it::Fante  ,6);
+  settings.setValue(it::Cavallo,7);
+  settings.setValue(it::Re     ,8);
+  settings.setValue(it::Three  ,9);
+  settings.setValue(it::Ace    ,11);
+}
+
 void Briscola::deal(){
   int n = players.getNbPlayers();
   int cPP = cardsPerPlayer(n);
-
-  for(int i = 0; i < n; i++)
+  int i;
+  for(i = 0; i < n; i++)
     for(int j = 0; j < cPP; j++){
-      Card& card = deck->deal();
-      players.addTo(i, card);
+      if(deck->getSize() != 0){
+   	Card& card = deck->deal();
+	players.addTo(i, card);
+      }
     }
+  if(deck->getSize() == 0)
+    players.addTo(i, *last);
 }
 
 void Briscola::initPlayersHand(){
@@ -55,13 +72,28 @@ void Briscola::oneAction(){
 
 void Briscola::play(){
   cout << "-- Debut de manche --" << endl;
-  players.setActualPlayer(0);
-  for(int i = 0; i < 3; i++)
+
+  for(int i = 0; i < 3; i++){
+    cout << "Atout : " << *last << endl;
     do{
-      cout << "\nTable : " <<  *discardPiles << endl;
       oneAction();
       players.next();
     }
     while (players.getActualPlayerId() != 0);
+    cout << "\nTable : " <<  *discardPiles << endl;
+    CardContainer cards = discardPiles->removeAll();
+    int iBest = 0;
+    Card& best = cards.getElement(cards.getSize() -1);
+    for(int i = 0; i < cards.getSize() -1; i++)
+      if(best.compare(cards.getElement(i), settings)<0){
+	best = cards.getElement(i);
+	iBest = i;
+      }
+    players.discardTo(iBest, cards);
+    players.setActualPlayer(iBest);
+
+    cout << "Best : " << best << endl;
+  }
+
   deal();
 }

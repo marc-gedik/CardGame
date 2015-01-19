@@ -48,7 +48,6 @@ void Uno::play(){
   Action a;
   a.setTo(*discardPiles, CardContainer());
 
-  
   //si le sommet de la pile est +2: piocher 2fois
   if(a.isPlusTwo()){
     players.ask(a,Movement::M_PIOCHE,2);
@@ -64,31 +63,27 @@ void Uno::play(){
     players.reverseOrder();
     players.next();
   }
-  
-  
+
   // if(a.isSuperJoker()){
   //   players.next();
   // }
 
-   
   // if(a.isSkip()){
   //   players.next();
   // }
-  else{
 
-    players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
-    if(a.isPioche()){
-      players.add(pioche->draw());
+  players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
+  if(a.isPioche()){
+    players.add(pioche->draw());
+    players.next();
+  }
+  else{
+    if(a.sameRank() || a.sameColor()){
+      a.apply();
       players.next();
     }
-    else{    
-      if(a.sameRank() || a.sameColor()){
-	a.apply();
-      players.next();
-      }
-      else
-	a.reset();
-    }
+    else
+      a.reset();
   }
 }
 

@@ -5,35 +5,20 @@
 #include <map>
 
 #include "Settings.hpp"
+#include "Card.hpp"
 
-class TrumpSettings : Settings {
+class TrumpSettings : public Settings {
 protected:
-  typedef pair<int, int> key;
   int trump;
-  map<key, int> values;
+  std::map<int, int> values;
 
+  int get(const Card&) const;
 public:
+  void setTrump(int);
+  void setValue(int, int);
 
-  void setTrump(int suit){ trump = suit; }
+  virtual int compare(const Card&, const Card&) const;
 
-  void setValue(int suit, int rank, int value){
-    values.insert(make_pair(key(suit, rank), value));
-  }
-
-  virtual int compare(const Card& cardA, const Card& cardB){
-    if(cardA.getSuit() == trump)
-      if(cardB.getSuit() == trump)
-	return cardA.getRank() - cardB.getRank();
-      else
-	return 1;
-    else
-      if(cardB.getSuit() == trump)
-	return -1;
-      else if (cardB.getSuit() == cardA.getSuit())
-	return cardA.getRank() - cardB.getRank();
-      else
-	return 1;
-  }
 };
 
 #endif

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Settings;
+#include "Settings.hpp"
 
 class Card {
 public:
@@ -31,7 +31,7 @@ public:
   bool operator!=(const Card&) const;
   bool operator==(const Card&) const;
   bool sameSuit(const Card&);
-  int compare(const Card&, const Settings&);
+  int compare(const Card&, const Settings&) const;
 
   friend ostream& operator<<(ostream&, Card&);
 };
