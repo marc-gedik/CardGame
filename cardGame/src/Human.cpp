@@ -3,13 +3,17 @@
 #include "Movement.hpp"
 #include "exception/IllegalEntry.hpp"
 
-void Human::ask(Action& action, int what){
+void Human::ask(Action& action, int what, int request){
   Movement movement;
   string query;
-
-  cout << "Quelle(s) carte(s) jouer ?" << endl;
-  cout << hand << endl;
-
+   switch(request){
+   case 0 :   cout << "Choisir carte(s) " << endl; break;
+   case 1 :  cout << " Choisir carte(s) ou piocher" << endl; break;
+   case 2 :  cout << "Piocher 2 fois " << endl;break;
+   default:  cout << "_" << endl;
+   }
+   cout << hand << endl;
+   
   cin >> query;
   try{
     movement = Movement(query, what);

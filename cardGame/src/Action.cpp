@@ -59,16 +59,19 @@ void Action::reset(){
 }
 
 bool Action::isPlusTwo(){
-  cout<<"rank du haut de la pile: "<< (to->look()).getRank()<<endl;
-  return true;
+  if((to->look()).getRank()==10)
+    return true;
+  return false;
+}
+
+
+bool Action::isReverse(){
+  if((to->look()).getRank()==11)
+    return true;
+  return false;
 }
 
 bool Action::isSkip(){
-  cout<<"rank: "<< (to->look()).getRank()<<endl;
-  return true;
-}
-
-bool Action::isReverse(){
   cout<<"rank: "<< (to->look()).getRank()<<endl;
   return true;
 }
