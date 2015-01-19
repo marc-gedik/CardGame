@@ -73,16 +73,18 @@ void Briscola::oneAction(){
 void Briscola::play(){
   cout << "-- Debut de manche --" << endl;
 
+  int iBest = players.getActualPlayerId();
+
   for(int i = 0; i < 3; i++){
     cout << "Atout : " << *last << endl;
     do{
       oneAction();
       players.next();
     }
-    while (players.getActualPlayerId() != 0);
+    while (players.getActualPlayerId() != iBest);
     cout << "\nTable : " <<  *discardPiles << endl;
     CardContainer cards = discardPiles->removeAll();
-    int iBest = 0;
+    iBest = 0;
     Card& best = cards.getElement(cards.getSize() -1);
     for(int i = 0; i < cards.getSize() -1; i++)
       if(best.compare(cards.getElement(i), settings)<0){
