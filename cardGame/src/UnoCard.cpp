@@ -14,11 +14,11 @@ namespace uno {
     case Seven	 : return os << "7";
     case Eight	 : return os << "8";
     case Nine 	 : return os << "9";
-    case PlusTwo	 : return os << "+2";
-    case Reverse	 : return os << "<-->";
+    case PlusTwo : return os << "+2";
+    case Reverse : return os << "\xE2\x86\xBA";
     case Skip	 : return os << "Skip";
-    case Joker	 : return os << "Joker";
-    case SuperJoker: return os << "SuperJoker";
+    case Joker	 : return os << "J";
+    case SuperJoker: return os << "+4";
     default        : return os << "_";
     }
   }
@@ -28,12 +28,12 @@ namespace uno {
 
   std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
     switch(suit){
-    case Blue  	: return os << "Blue";
-    case Green	: return os << "Green";
-    case Yellow   : return os << "Yellow";
-    case Red  	: return os << "Red";
-    case NoColor  : return os << "~";
-    default       : return os << "_";
+    case Blue  	: return os << "\xE2\x99\xA5";
+    case Green	: return os << "\xE2\x99\xA6";
+    case Yellow : return os << "\xE2\x99\xA3";
+    case Red  	: return os << "\xE2\x99\xA0";
+    case NoColor: return os << "~";
+    default     : return os << "_";
     }
   }
 

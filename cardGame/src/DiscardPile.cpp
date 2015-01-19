@@ -55,7 +55,7 @@ CardContainer DiscardPile::remove(CardContainer cards){
 }
 
 Card& DiscardPile::look(){
-  return *discardPile.front();
+  return *discardPile.back();
 }
 
 ostream& DiscardPile::print(ostream& os){

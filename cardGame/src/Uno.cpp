@@ -38,24 +38,16 @@ void Uno::initPlayersHand(){
       players.addTo(i, card);
     }
   pioche= new Pioche(deck->removeAll());
-  cout<<"1 dicard Pile : "<<*discardPiles<<endl;
   discardPiles->add(pioche->draw());
-  cout<<"2 dicard Pile : "<<*discardPiles<<endl;
- 
 }
 
-
-
-
-
 void Uno::play(){
-  cout<<"first tour"<<endl;
-  cout<<"dicard Pile : "<<*discardPiles<<endl;
+  cout<<"\nTable : "<<*discardPiles<<endl;
 
   Action a;
   a.setTo(*discardPiles, CardContainer());
   players.ask(a,Movement::M_PIOCHE | Movement::M_ONE);
-  cout<<"dicard Pile : "<<*discardPiles<<endl;
+
   if(a.isPioche()){
     cout<<"j'ai piocher"<<endl;
     players.add(pioche->draw());
@@ -63,12 +55,13 @@ void Uno::play(){
   }
   else{
     cout<<"je choisi une carte"<<endl;
-    if(a.sameRank()){
-      cout<<"carte du meme rang"<<endl;
+    if(a.sameRank() || a.sameColor()){
       a.apply();
       players.next();
     }
-  }  
+    else
+      a.reset();
+  }
 }
 
 

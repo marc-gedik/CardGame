@@ -36,7 +36,7 @@ public:
   bool sameRank();
   bool sameColor();
 
-  
+  void reset();
 };
 
 #endif

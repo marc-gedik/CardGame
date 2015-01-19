@@ -17,6 +17,7 @@ bool Action::isPioche(){
 void Action::setFrom(CanAddRemovePile& from, Movement& movement){
   this->movement = movement;
   this->from = &from;
+  moving = false;
   if(!isPioche())
     checkMovement();
 }
@@ -28,29 +29,28 @@ void Action::setTo(DiscardPile& to, const CardContainer& destination){
 
 
 bool Action::sameRank(){
-  moving = true;
-  movingCards = from->remove(movement);
-  for(int i=0; i<  movingCards.getSize(); i++){
-    if(to->look() !=  movingCards.getElement(i)){
-      moving= false;
-      from->add(movingCards);
-      return false;
-    }
+  if(!moving){
+    moving = true;
+    movingCards = from->remove(movement);
   }
+  for(int i=0; i < movingCards.getSize(); i++)
+    if(to->look() !=  movingCards.getElement(i))
+      return false;
+
   return true;
 }
 
 
 bool Action::sameColor(){
-  moving = true;
-  movingCards = from->remove(movement);
-  for(int i=0; i<  movingCards.getSize(); i++){
-    if((movingCards.getElement(i)).sameSuit((to->look()))){
-      moving= false;
-      from->add(movingCards);
-      return false;
-    }
+  if(!moving){
+    cout << "ok" << endl;
+    moving = true;
+    movingCards = from->remove(movement);
   }
+  for(int i=0; i<  movingCards.getSize(); i++)
+    if(!(movingCards.getElement(i)).sameSuit((to->look())))
+      return false;
+
   return true;
 }
 
@@ -77,4 +77,9 @@ void Action::apply(){
   else
     to->add(from->remove(movement));
 
+}
+
+void Action::reset(){
+  moving = false;
+  from->add(movingCards);
 }
