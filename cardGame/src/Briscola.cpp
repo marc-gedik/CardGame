@@ -12,6 +12,23 @@ int  Briscola::cardsPerPlayer(int){
   return 3;
 }
 
+void Briscola::theWinnerIs(){
+  //TODO
+}
+
+void Briscola::initScores(){
+  scores.setScore(it::Seven  , 0);
+  scores.setScore(it::Six    , 0);
+  scores.setScore(it::Five   , 0);
+  scores.setScore(it::Four   , 0);
+  scores.setScore(it::Three  , 10);
+  scores.setScore(it::Deuce  , 0);
+  scores.setScore(it::Re     , 4);
+  scores.setScore(it::Cavallo, 3);
+  scores.setScore(it::Fante  , 2);
+  scores.setScore(it::Ace    , 11);
+}
+
 void Briscola::initSettings(){
   settings.setValue(it::Deuce  ,1);
   settings.setValue(it::Four   ,2);

@@ -2,6 +2,7 @@
 #define H_SCOPA
 
 #include "Game.hpp"
+#include "ScoreSettings.hpp"
 
 class Scopa : public Game {
 private:
@@ -9,9 +10,12 @@ private:
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;
   virtual bool isFinished();
-
+  virtual void theWinnerIs();
   virtual void printHeader();
   virtual void play();
+
+  ScoreSettings scores;
+  void initScores();
 
   void deal();
   void oneAction();

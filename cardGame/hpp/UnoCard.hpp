@@ -19,6 +19,6 @@ namespace uno {
 
 }
 
-#define UnoCard SimpleCard<uno::UnoSuit, uno::UnoRank>
+class UnoCard : public SimpleCard<uno::UnoSuit, uno::UnoRank> {};
 
 #endif

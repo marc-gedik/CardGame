@@ -3,6 +3,8 @@
 #include "exception/IllegalMovement.hpp"
 #include "exception/IllegalNumberOfPlayer.hpp"
 
+#include "ItalianCard.hpp"
+
 void Scopa::checkNumberOfPlayers(int n){
   if(n < 2 || n > 4)
     throw IllegalNumberOfPlayer(">1 and <5");
@@ -10,6 +12,23 @@ void Scopa::checkNumberOfPlayers(int n){
 
 int Scopa::cardsPerPlayer(int n){
   return 3;
+}
+
+void Scopa::theWinnerIs(){
+  //TODO
+}
+
+void Scopa::initScores(){
+  scores.setScore(it::Seven  , 20);
+  scores.setScore(it::Six    , 18);
+  scores.setScore(it::Ace    , 16);
+  scores.setScore(it::Five   , 15);
+  scores.setScore(it::Four   , 14);
+  scores.setScore(it::Three  , 13);
+  scores.setScore(it::Deuce  , 12);
+  scores.setScore(it::Re     , 10);
+  scores.setScore(it::Cavallo, 10);
+  scores.setScore(it::Fante  , 10);
 }
 
 void Scopa::deal(){

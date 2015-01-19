@@ -27,6 +27,12 @@ bool Uno::isFinished(){
   return false;
 }
 
+void Uno::theWinnerIs(){
+  for(int i = 0; i < players.getNbPlayers(); i++)
+    if(players.emptyHand(i))
+      cout << "The winner is " << i << endl;
+}
+
 void Uno::printHeader(){
   cout << "------------- Uno --------------" << endl;
 }
@@ -85,7 +91,7 @@ void Uno::testSameRankOrColor(){
 }
 
 void Uno::play(){
-  std::system("clear");
+  //  std::system("clear");
   printHeader();
   cout<<"\nTable : "<<*discardPiles<<endl;
 
@@ -95,6 +101,7 @@ void Uno::play(){
     players.next();
   }
   else if(isPlusTwo()){
+    cout << "Vous piocher 2 fois" << endl;
     players.add(pioche->draw());
     players.add(pioche->draw());
     players.next();

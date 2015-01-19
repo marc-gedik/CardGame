@@ -47,6 +47,9 @@ bool HuitAmericain::isWhat(int n){
   return discardPiles->look().getRank() == n;
 }
 
+void HuitAmericain::theWinnerIs(){
+  //TODO
+}
 
 bool HuitAmericain::isJoker (){
   return isWhat(8);

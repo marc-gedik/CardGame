@@ -17,6 +17,7 @@ void Game::initGame(string deckType, int nbPlayer, int nbPaquet, int nbDiscardPi
 void Game::run(){
   while(!isFinished())
     play();
+  theWinnerIs();
 }
 
 

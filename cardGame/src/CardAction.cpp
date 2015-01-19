@@ -29,7 +29,7 @@ void CardAction::setTo(DiscardPile& to, const CardContainer& destination){
 
 void CardAction::countMovingCards(int n){
   if(movement.getSize() != n)
-    throw IllegalMovement("The number of cards must be : " + n );
+    throw IllegalMovement("Number of cards is invalid");
 }
 
 void CardAction::movingCardsFromTop(){

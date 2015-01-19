@@ -23,6 +23,11 @@ bool Bataille::isFinished(){
   return players.getNbPlayers() == 1;
 }
 
+void Bataille::theWinnerIs(){
+  players.setActualPlayer(0);
+  cout << "The winner is : " << players.getActualPlayerId() << endl;
+}
+
 void Bataille::printHeader(){
   cout << "-- Bataille --" << endl;
 }

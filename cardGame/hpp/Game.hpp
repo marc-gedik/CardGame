@@ -17,7 +17,7 @@ protected:
   virtual void initPlayersHand() = 0;
   virtual int cardsPerPlayer(int) = 0;
   virtual void checkNumberOfPlayers(int) = 0;
-
+  virtual void theWinnerIs() = 0;
   virtual void printHeader() = 0;
   virtual void play() = 0;
 

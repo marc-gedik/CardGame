@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream&, const ItalianSuit&);
 
 }
 
-#define ItalianCard SimpleCard<ItalianSuit, ItalianRank>
+class ItalianCard : public SimpleCard<it::ItalianSuit, it::ItalianRank> {};
 
 
 #endif

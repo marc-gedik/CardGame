@@ -20,6 +20,6 @@ std::ostream& operator<<(std::ostream&, const FrenchSuit&);
 
 }
 
-#define FrenchCard SimpleCard<FrenchSuit, FrenchRank>
+class FrenchCard : public SimpleCard<fr::FrenchSuit, fr::FrenchRank> {};
 
 #endif

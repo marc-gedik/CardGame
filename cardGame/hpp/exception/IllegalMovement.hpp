@@ -3,15 +3,17 @@
 
 #include <iostream>
 
-class IllegalMovement : public std::exception {
+using namespace std;
+
+class IllegalMovement : public exception {
 private:
-  std::string msg;
+  string msg;
 public:
   IllegalMovement(){
     msg = "Illegal Movement";
   }
 
-  IllegalMovement(const std::string s){
+  IllegalMovement(string s){
     msg = "Illegal Movement : " + s;
   }
 

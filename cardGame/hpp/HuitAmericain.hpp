@@ -12,7 +12,7 @@ private:
   virtual bool isFinished();
   virtual void printHeader();
   virtual void play();
-
+  virtual void theWinnerIs();
 
   void testSameRankOrColor();
 

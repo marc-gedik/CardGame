@@ -9,7 +9,7 @@ private:
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;
   virtual bool isFinished();
-
+  virtual void theWinnerIs();
   virtual void printHeader();
   virtual void play();
 

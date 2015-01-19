@@ -13,6 +13,7 @@ private:
   void testSameRankOrColor();
   virtual void printHeader();
   virtual void play();
+  virtual void theWinnerIs();
 
   bool isWhat(int);
   bool isPlusTwo();

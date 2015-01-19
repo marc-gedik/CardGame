@@ -3,6 +3,7 @@
 
 #include "Game.hpp"
 #include "SameOrTrumpSettings.hpp"
+#include "ScoreSettings.hpp"
 #include "ItalianCard.hpp"
 
 class Briscola : public Game {
@@ -11,9 +12,13 @@ private:
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;
   virtual bool isFinished();
-
+  virtual void theWinnerIs();
 
   virtual void printHeader();
+
+  ScoreSettings scores;
+  void initScores();
+
   void deal();
   void oneAction();
   void initSettings();
