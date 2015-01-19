@@ -63,8 +63,9 @@ void Action::reset(){
 
 
 bool Action::isPlusTwo(){
-  cout<<"rank du haut de la pile: "<< (to->look()).getRank()<<endl;
-  return true;
+  if((to->look()).getRank()==10)
+    return true;
+  return false;
 }
 
 

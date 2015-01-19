@@ -5,6 +5,7 @@
 #include "exception/IllegalNumberOfPlayer.hpp"
 
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 void Uno::checkNumberOfPlayers(int nbPlayer){
@@ -42,6 +43,7 @@ void Uno::initPlayersHand(){
 }
 
 void Uno::play(){
+  std::system("clear");
   cout<<"\nTable : "<<*discardPiles<<endl;
 
   Action a;
@@ -49,14 +51,15 @@ void Uno::play(){
 
   
   // //si le sommet de la pile est +2: piocher 2fois
-  // if(a.isPlusTwo()){
-  //   /* players.ask(a,Movement::M_PIOCHE);
-  //      players.add(pioche->draw());
-  //      players.ask(a,Movement::M_PIOCHE);
-  //      players.add(pioche->draw());*/
-  //   //offrir la possibilité de jouer les cartes pioché sinon passer son tour.
-  //   players.next();
-  // }
+  if(a.isPlusTwo()){
+    cout <<"vous devez piocher 2 fois"<<endl;
+    players.ask(a,Movement::M_PIOCHE);
+       players.add(pioche->draw());
+       players.ask(a,Movement::M_PIOCHE);
+       players.add(pioche->draw());
+    //offrir la possibilité de jouer les cartes pioché sinon passer son tour.
+    players.next();
+  }
   
   // if(a.isReverse()){
   //   players.next();
@@ -85,7 +88,6 @@ void Uno::play(){
       a.isPlusTwo(); //test le haut de la pile mais renvoie tjrs le meme element alors quil devrai prendre la valeur de la derniere carte posé
       a.apply();
       players.next();
-      a.reset();
     }
     else
       a.reset();
