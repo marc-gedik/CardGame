@@ -33,7 +33,7 @@ int main(){
   Movement m2(query, Movement::M_ONE);
 
   cout << "Jouer avec une IA ?" << endl;
-  cout << "\t1. Oui\n\t_. Non" << endl;
+  cout << "\t1. Non\n\t2. Oui" << endl;
   cin >> query;
   Movement m3(query, Movement::M_ONE);
 

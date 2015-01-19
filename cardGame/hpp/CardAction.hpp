@@ -2,7 +2,6 @@
 #define H_CARD_ACTION
 
 #include "Action.hpp"
-
 #include "CardContainer.hpp"
 #include "CanAddRemovePile.hpp"
 #include "DiscardPile.hpp"
@@ -38,6 +37,8 @@ public:
   bool isPioche();
 
   bool sameRank();
+  bool sameRank(int rank);
+
   bool sameColor();
   bool sameColor(int color);
 

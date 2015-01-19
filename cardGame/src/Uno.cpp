@@ -96,7 +96,6 @@ void Uno::play(){
   cout<<"\nTable : "<<*discardPiles<<endl;
 
   if(isReverse()){
-    cout<<"vous passez votre tour.."<<endl;
     players.reverseOrder();
     players.next();
   }

@@ -1,5 +1,5 @@
 #include "HuitAmericain.hpp"
-
+#include "FrenchCard.hpp"
 #include "Action.hpp"
 #include "exception/IllegalMovement.hpp"
 #include "exception/IllegalNumberOfPlayer.hpp"
@@ -51,8 +51,25 @@ void HuitAmericain::theWinnerIs(){
   //TODO
 }
 
+bool HuitAmericain::isQueen (){
+  return isWhat(fr::Seven);
+}
+
+bool HuitAmericain::isSeven (){
+  return isWhat(fr::Seven);
+}
+
+bool HuitAmericain::isTen (){
+  return isWhat(fr::Ten);
+}
+
+bool HuitAmericain::isJack (){
+  return isWhat(fr::Jack);
+}
+
 bool HuitAmericain::isJoker (){
-  return isWhat(8);
+  bool b= isWhat(fr::Ace) || isWhat(fr::Deuce);
+  return b;
 }
 
 
@@ -67,7 +84,7 @@ void HuitAmericain::testSameRankOrColor(){
     players.next();
   }
   else{
-    if(a.sameColor(4)){
+    if(a.sameRank(8) ){
       Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
       players.ask(question, 0);
       if(question.getReponse()>=0 && question.getReponse()<=3)
@@ -76,7 +93,6 @@ void HuitAmericain::testSameRankOrColor(){
     }
     else if(a.sameRank() || a.sameColor(colorOfPile)){
       a.apply();
-
       colorOfPile=  (discardPiles->look()).getSuit();
       players.next();
     }
@@ -87,20 +103,39 @@ void HuitAmericain::testSameRankOrColor(){
 
 void HuitAmericain::play(){
   printHeader();
-   cout<<"\nTable : "<<*discardPiles<<endl;
+  cout<<"\nTable : "<<*discardPiles<<endl;
+ if(isTen()){
+   testSameRankOrColor();
+   testSameRankOrColor();
+   players.next();
+ }
+  if(isJack()){
+    players.reverseOrder();
+    players.next();
+  }
+  if(isSeven()){
+    players.next();
+  }
 
- if(isJoker()){
-    cout << "Vous piocher 5 fois" << endl;
-    players.add(pioche->draw());
+  if(isQueen()){
     players.add(pioche->draw());
     players.add(pioche->draw());
     players.add(pioche->draw());
     players.next();
-    testSameRankOrColor();
-      
+    testSameRankOrColor();   
   }
- else
-  testSameRankOrColor();
+  
+  else
+    if(isJoker()){
+      cout << "Vous piochez 2 fois" << endl;
+       players.add(pioche->draw());
+       players.add(pioche->draw());
+       
+       players.next();
+       testSameRankOrColor();   
+    }
+    else
+      testSameRankOrColor();
 }
 
 

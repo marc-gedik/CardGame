@@ -16,8 +16,13 @@ private:
 
   void testSameRankOrColor();
 
-  bool isWhat(int); 
+  bool isWhat(int);
+  bool isQueen();
+  bool isSeven();
+  bool isTen();
+  bool isJack();
   bool isJoker();
+  
 
 public:
   HuitAmericain(int nbPlayers, bool ia){
@@ -26,7 +31,7 @@ public:
     int nbDeck=1;
     initGame("Fr", nbPlayers, nbDeck, nbDiscardPile, ia);
     cout <<"Jeu 8 Americain initialise"<<endl;
-
+    
   }
 };
 

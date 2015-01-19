@@ -65,18 +65,36 @@ void CardAction::reset(){
   from->add(movingCards);
 }
 
+
+
+bool CardAction::sameRank(int rank){
+  if(!moving){
+    moving = true;
+    movingCards = from->remove(movement);
+  }
+  for(int i=0; i<  movingCards.getSize(); i++)
+    if(movingCards.getElement(i).getRank() != rank)
+      return false;
+
+  return true;
+}
+
+
 bool CardAction::sameRank(){
   if(!moving){
     moving = true;
     movingCards = from->remove(movement);
   }
-  cout << to->look() << endl;
+  // cout << to->look() << endl;
   for(int i=0; i < movingCards.getSize(); i++)
     if(to->look() !=  movingCards.getElement(i))
       return false;
 
   return true;
 }
+
+
+
 
 bool CardAction::sameColor(int color){
   if(!moving){
