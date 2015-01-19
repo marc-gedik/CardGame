@@ -3,9 +3,10 @@
 #include "Bataille.hpp"
 #include "Uno.hpp"
 #include "Scopa.hpp"
+#include "Briscola.hpp"
 
-const int GameFactory::nbChoice = 3;
-const string GameFactory::choice[] = { "Bataille", "Uno", "Scopa" };
+const int GameFactory::nbChoice = 4;
+const string GameFactory::choice[] = { "Bataille", "Uno", "Scopa", "Briscola" };
 
 Game* GameFactory::createGame(Movement game, Movement nbPlayer){
   int n = nbPlayer[0];
@@ -16,6 +17,8 @@ Game* GameFactory::createGame(Movement game, Movement nbPlayer){
     return new Uno(n);
   case 3:
     return new Scopa(n);
+  case 4:
+    return new Briscola(n);
   default:
     throw;
   }

@@ -10,7 +10,6 @@ using namespace std;
 #include "CardFactory.hpp"
 
 #include "UnoCard.hpp"
-#include "SimpleCardsSettings.hpp"
 
 int main(){
 
