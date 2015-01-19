@@ -52,11 +52,10 @@ void Uno::play(){
   
   // //si le sommet de la pile est +2: piocher 2fois
   if(a.isPlusTwo()){
-    cout <<"vous devez piocher 2 fois"<<endl;
+    players.ask(a,Movement::M_PIOCHE,2);
+    players.add(pioche->draw());
     players.ask(a,Movement::M_PIOCHE);
-       players.add(pioche->draw());
-       players.ask(a,Movement::M_PIOCHE);
-       players.add(pioche->draw());
+    players.add(pioche->draw());
     //offrir la possibilité de jouer les cartes pioché sinon passer son tour.
     players.next();
   }
@@ -74,10 +73,8 @@ void Uno::play(){
   //   players.next();
   // }
   
-  players.ask(a,Movement::M_PIOCHE | Movement::M_ONE);
-
+  players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
   if(a.isPioche()){
-    cout<<"j'ai piocher"<<endl;
     players.add(pioche->draw());
     players.next();
   }
@@ -85,7 +82,6 @@ void Uno::play(){
     cout<<"je choisi une carte"<<endl;
     
     if(a.sameRank() || a.sameColor()){
-      a.isPlusTwo(); //test le haut de la pile mais renvoie tjrs le meme element alors quil devrai prendre la valeur de la derniere carte posé
       a.apply();
       players.next();
     }

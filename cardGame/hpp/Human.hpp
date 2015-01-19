@@ -7,7 +7,7 @@
 class Human : public Player {
 public:
   Human(){}
-  virtual void ask(Action&, int);
+  virtual void ask(Action&, int,  int request=0);
 };
 
 #endif
