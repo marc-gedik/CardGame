@@ -14,13 +14,18 @@ private:
   virtual void play();
 
 
+  void testSameRankOrColor();
+
+  bool isWhat(int); 
+  bool isJoker();
+
 public:
   HuitAmericain(int nbPlayers){
     cout<<"Jouons aux 8 Americain"<<endl;
     int nbDiscardPile=1;
     int nbDeck=1;
     initGame("Fr", nbPlayers, nbDeck, nbDiscardPile);
-    cout <<"Jeu uno initialise"<<endl;
+    cout <<"Jeu 8 Americain initialise"<<endl;
 
   }
 };

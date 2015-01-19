@@ -6,8 +6,8 @@
 #include "Briscola.hpp"
 #include "HuitAmericain.hpp"
 
-const int GameFactory::nbChoice = 4;
-const string GameFactory::choice[] = { "Bataille", "Uno", "Scopa", "Briscola" };
+const int GameFactory::nbChoice = 5;
+const string GameFactory::choice[] = { "Bataille", "Uno", "Scopa", "Briscola", "8 Americain" };
 
 Game* GameFactory::createGame(Movement game, Movement nbPlayer){
   int n = nbPlayer[0];
