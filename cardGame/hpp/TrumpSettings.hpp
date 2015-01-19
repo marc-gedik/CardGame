@@ -1,23 +1,22 @@
-#ifndef H_SIMPLE_CARDS_SETTINGS
-#define H_SIMPLE_CARDS_SETTINGS
+#ifndef H_TRUMP_SETTINGS
+#define H_TRUMP_SETTINGS
 
 #include <iostream>
 #include <map>
 
 #include "Settings.hpp"
 
-template <typename Suit, typename Rank>
-class SimpleCardsSettings : Settings {
-private:
-  typedef pair<Suit, Rank> key;
-  Suit trump;
+class TrumpSettings : Settings {
+protected:
+  typedef pair<int, int> key;
+  int trump;
   map<key, int> values;
 
 public:
 
-  void setTrump(Suit suit){ trump = suit; }
+  void setTrump(int suit){ trump = suit; }
 
-  void setValue(Suit suit, Rank rank, int value){
+  void setValue(int suit, int rank, int value){
     values.insert(make_pair(key(suit, rank), value));
   }
 
@@ -30,8 +29,10 @@ public:
     else
       if(cardB.getSuit() == trump)
 	return -1;
-      else
+      else if (cardB.getSuit() == cardA.getSuit())
 	return cardA.getRank() - cardB.getRank();
+      else
+	return 1;
   }
 };
 

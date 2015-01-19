@@ -58,10 +58,6 @@ void Action::reset(){
   from->add(movingCards);
 }
 
-
-
-
-
 bool Action::isPlusTwo(){
   if((to->look()).getRank()==10)
     return true;
@@ -83,11 +79,9 @@ bool Action::isSkip(){
 }
 
 
-
 bool Action::isJoker(){
  return  false;
 }
-
 
 bool Action::isSuperJoker(){
   return false;
@@ -98,6 +92,7 @@ bool Action::sameRank(){
     moving = true;
     movingCards = from->remove(movement);
   }
+  cout << to->look() << endl;
   for(int i=0; i < movingCards.getSize(); i++)
     if(to->look() !=  movingCards.getElement(i))
       return false;

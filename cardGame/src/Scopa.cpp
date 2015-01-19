@@ -1,17 +1,18 @@
 #include "Scopa.hpp"
 
 #include "exception/IllegalMovement.hpp"
+#include "exception/IllegalNumberOfPlayer.hpp"
 
 void Scopa::checkNumberOfPlayers(int n){
   if(n < 2 || n > 4)
-    //throw IllegalNumberOfPlayers(nbPlayer, ">1 and <5 ");
-    throw 444;
+    throw IllegalNumberOfPlayer(">1 and <5");
 }
+
 int Scopa::cardsPerPlayer(int n){
   return 3;
 }
 
-void Scopa::initPlayersHand(){
+void Scopa::deal(){
   int n = players.getNbPlayers();
   int cPP = cardsPerPlayer(n);
 
@@ -20,6 +21,10 @@ void Scopa::initPlayersHand(){
       Card& card = deck->deal();
       players.addTo(i, card);
     }
+}
+
+void Scopa::initPlayersHand(){
+  deal();
 
   for(int i = 0; i < 4; i ++){
     Card& card = deck->deal();
@@ -66,5 +71,5 @@ void Scopa::play(){
       players.next();
     }
     while (players.getActualPlayerId() != 0);
-  initPlayersHand();
+  deal();
 }

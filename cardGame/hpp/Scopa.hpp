@@ -13,6 +13,7 @@ private:
   virtual void printHeader();
   virtual void play();
 
+  void deal();
   void oneAction();
 
 
