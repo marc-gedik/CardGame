@@ -16,9 +16,9 @@ int main(){
   GameFactory gameFactory;
 
   cout << "\x1b[2J\x1b[1;1H";
-  cout << "---------------" << endl;
-  cout << "-- Card Game --" << endl;
-  cout << "---------------" << endl;
+  cout << "---------------------------------------" << endl;
+  cout << "-------------- Card Game --------------" << endl;
+  cout << "---------------------------------------" << endl;
 
   cout << gameFactory << endl;
 

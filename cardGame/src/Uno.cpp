@@ -28,7 +28,7 @@ bool Uno::isFinished(){
 }
 
 void Uno::printHeader(){
-  cout << "-- Uno --" << endl;
+  cout << "------------- Uno --------------" << endl;
 }
 
 void Uno::initPlayersHand(){
@@ -67,7 +67,7 @@ void Uno::testSameRankOrColor(){
   }
   else{
     if(a.sameColor(4)){
-      Question question("Choisir une couleur");
+      Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
       players.ask(question, 0);
       if(question.getReponse()>=0 && question.getReponse()<=3)
 	colorOfPile = question.getReponse();
@@ -86,6 +86,7 @@ void Uno::testSameRankOrColor(){
 
 void Uno::play(){
   std::system("clear");
+  printHeader();
   cout<<"\nTable : "<<*discardPiles<<endl;
 
   if(isReverse()){

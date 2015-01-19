@@ -25,8 +25,9 @@ bool HuitAmericain::isFinished(){
 }
 
 void HuitAmericain::printHeader(){ 
-  cout << "-- Huit Amercain --" << endl;
+  cout << "-------------- Huit Americain --------------" << endl;
 }
+
 
 void HuitAmericain::initPlayersHand(){
   int n = players.getNbPlayers();
@@ -42,10 +43,61 @@ void HuitAmericain::initPlayersHand(){
 }
 
 
+bool HuitAmericain::isWhat(int n){
+  return discardPiles->look().getRank() == n;
+}
 
+
+bool HuitAmericain::isJoker (){
+  return isWhat(8);
+}
+
+
+void HuitAmericain::testSameRankOrColor(){
+  CardAction a;
+  a.setTo(*discardPiles, CardContainer());
+
+  players.ask(a, Movement::M_PIOCHE | Movement::M_ONE,1);
+  string query;
+  if(a.isPioche()){
+    players.add(pioche->draw());
+    players.next();
+  }
+  else{
+    if(a.sameColor(4)){
+      Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
+      players.ask(question, 0);
+      if(question.getReponse()>=0 && question.getReponse()<=3)
+	colorOfPile = question.getReponse();
+      a.apply();
+    }
+    else if(a.sameRank() || a.sameColor(colorOfPile)){
+      a.apply();
+
+      colorOfPile=  (discardPiles->look()).getSuit();
+      players.next();
+    }
+    else
+      a.reset();
+  }
+}
 
 void HuitAmericain::play(){
-  
+  printHeader();
+   cout<<"\nTable : "<<*discardPiles<<endl;
+
+ if(isJoker()){
+    cout << "Vous piocher 5 fois" << endl;
+    players.add(pioche->draw());
+    players.add(pioche->draw());
+    players.add(pioche->draw());
+    players.add(pioche->draw());
+    players.next();
+    testSameRankOrColor();
+      
+  }
+ else
+  testSameRankOrColor();
 }
 
 
