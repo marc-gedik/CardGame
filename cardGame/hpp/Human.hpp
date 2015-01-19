@@ -2,12 +2,15 @@
 #define H_HUMAN
 
 #include "Player.hpp"
-#include "Action.hpp"
+#include "CardAction.hpp"
+#include "Question.hpp"
 
 class Human : public Player {
 public:
   Human(){}
-  virtual void ask(Action&, int,  int request=0);
+  virtual void ask(CardAction&, int,  int request=0);
+  virtual void ask(Question&, int,  int request=0);
+
 };
 
 #endif

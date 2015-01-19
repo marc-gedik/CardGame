@@ -19,5 +19,8 @@ int Card::compare(const Card& card, const Settings& settings) const{
 bool Card::sameSuit(const Card& card) { return getSuit() == card.getSuit(); }
 
 ostream& operator<<(ostream& os, Card& card){
-  return card.print(os);
+  if(card.isVisible())
+    return card.print(os);
+  else
+    return os << "[]";
 }

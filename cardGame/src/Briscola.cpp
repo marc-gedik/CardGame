@@ -56,7 +56,7 @@ void Briscola::printHeader(){
 }
 
 void Briscola::oneAction(){
-  Action action;
+  CardAction action;
   action.setTo(*discardPiles, CardContainer());
   players.ask(action, Movement::M_ONE);
 

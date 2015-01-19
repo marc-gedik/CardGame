@@ -1,6 +1,7 @@
 #include "Bataille.hpp"
 
-#include "Action.hpp"
+#include "CardAction.hpp"
+#include "exception/IllegalNumberOfPlayer.hpp"
 #include "exception/IllegalMovement.hpp"
 
 #include <iostream>
@@ -8,8 +9,7 @@ using namespace std;
 
 void Bataille::checkNumberOfPlayers(int nbPlayer){
   if(nbPlayer < 2)
-    //throw IllegalNumberOfPlayers(nbPlayer, ">2");
-    throw 444;
+    throw IllegalNumberOfPlayer(">2");
 }
 
 int Bataille::cardsPerPlayer(int nbPlayer){
@@ -34,19 +34,20 @@ void Bataille::initPlayersHand(){
   for(int j = 0; j < cPP; j++)
     for(int i = 0; i < n; i++){
       Card& card = deck->deal();
-      //      card.flip();
+      card.flip();
       players.addTo(i, card);
     }
 }
 
 void Bataille::first(){
-  Action action;
+  CardAction action;
   action.setTo(discardPiles[players.getActualPlayerId()], CardContainer());
   players.ask(action, Movement::M_ONE);
 
   try{
     action.countMovingCards(1);
     action.movingCardsFromTop();
+    action.flip();
     action.apply();
   }
   catch(IllegalMovement e){
@@ -82,8 +83,12 @@ void Bataille::checkBataille(){
 }
 
 void Bataille::giveAllTo(int k){
-  for(int i = 0; i < players.getNbPlayers(); i++)
-    players.addTo(k, discardPiles[i].removeAll());
+  for(int i = 0; i < players.getNbPlayers(); i++){
+    CardContainer cards = discardPiles[i].removeAll();
+    for(int i = 0; i < cards.getSize(); i++)
+      cards.getElement(i).flip();
+    players.addTo(k, cards);
+  }
 }
 
 void Bataille::play(int n){

@@ -4,6 +4,8 @@
 #include "exception/IllegalMovement.hpp"
 #include "exception/IllegalNumberOfPlayer.hpp"
 
+#include "UnoCard.hpp"
+
 #include <iostream>
 #include <cstdlib>
 using namespace std;
@@ -40,86 +42,72 @@ void Uno::initPlayersHand(){
     }
   pioche= new Pioche(deck->removeAll());
   discardPiles->add(pioche->draw());
+  colorOfPile = (discardPiles->look()).getSuit();
 }
 
+bool Uno::isWhat(int n){
+  return discardPiles->look().getRank() == n;
+}
 
+bool Uno::isPlusTwo   (){ return isWhat(uno::PlusTwo);    }
+bool Uno::isReverse   (){ return isWhat(uno::Reverse);    }
+bool Uno::isSkip      (){ return isWhat(uno::Skip); 	  }
+bool Uno::isJoker     (){ return isWhat(uno::Joker);      }
+bool Uno::isSuperJoker(){ return isWhat(uno::SuperJoker); }
 
-void Uno::testSameRankOrColor(Action a){
-   players.ask(a,Movement::M_PIOCHE | Movement::M_ONE,1);
+void Uno::testSameRankOrColor(){
+  CardAction a;
+  a.setTo(*discardPiles, CardContainer());
+
+  players.ask(a, Movement::M_PIOCHE | Movement::M_ONE,1);
   string query;
-   if(a.isPioche()){
-      players.add(pioche->draw());
+  if(a.isPioche()){
+    players.add(pioche->draw());
+    players.next();
+  }
+  else{
+    if(a.sameColor(4)){
+      Question question("Choisir une couleur");
+      players.ask(question, 0);
+      if(question.getReponse()>=0 && question.getReponse()<=3)
+	colorOfPile = question.getReponse();
+      a.apply();
+    }
+    else if(a.sameRank() || a.sameColor(colorOfPile)){
+      a.apply();
+
+      colorOfPile=  (discardPiles->look()).getSuit();
       players.next();
     }
-    else{
-       if(a.sameColor(4)){
-	 colorOfPile=  (discardPiles->look()).getSuit();
-	 cin >> query;
-	 Movement movement = Movement(query, Movement::M_ONE);
-	 if(movement[0]>=0 && movement[0]<=3 )
-	   colorOfPile = movement[0];;
-	 
-       }
-      if(a.sameRank() || a.sameColor(colorOfPile)){
-	a.apply();
-	players.next();
-      }
-      else
-	a.reset();
-    }
+    else
+      a.reset();
   }
-
+}
 
 void Uno::play(){
   std::system("clear");
   cout<<"\nTable : "<<*discardPiles<<endl;
-  Action a;
-  a.setTo(*discardPiles, CardContainer());
 
-  if(a.isReverse()){
+  if(isReverse()){
     cout<<"vous passez votre tour.."<<endl;
     players.reverseOrder();
     players.next();
-    testSameRankOrColor(a);
-
   }
-  
-  //si le sommet de la pile est +2: piocher 2fois
-  else if(a.isPlusTwo()){
-    players.ask(a,Movement::M_PIOCHE,2);
+  else if(isPlusTwo()){
     players.add(pioche->draw());
-    players.ask(a,Movement::M_PIOCHE,3);
     players.add(pioche->draw());
     players.next();
-    testSameRankOrColor(a);
-
   }
-  else if(a.isSkip()){
+  else if(isSkip()){
     players.next();
-    testSameRankOrColor(a);
   }
-
-  else if(a.isJoker()){
-    testSameRankOrColor(a);	
-   }
-
-  else if(a.isSuperJoker()){
-    players.ask(a,Movement::M_PIOCHE,2);
+  else if(isSuperJoker()){
+    cout << "Vous piocher 4 fois" << endl;
     players.add(pioche->draw());
-    players.ask(a,Movement::M_PIOCHE,3);
     players.add(pioche->draw());
-
-    players.ask(a,Movement::M_PIOCHE,3);
     players.add(pioche->draw());
-    players.ask(a,Movement::M_PIOCHE,3);
     players.add(pioche->draw());
     players.next();
-    testSameRankOrColor(a);
   }
-  else{
-    testSameRankOrColor(a);
-   
-  }
+  testSameRankOrColor();
 }
-
-

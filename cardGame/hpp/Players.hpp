@@ -3,7 +3,8 @@
 
 #include "Deck.hpp"
 #include "Player.hpp"
-#include "Action.hpp"
+#include "CardAction.hpp"
+#include "Question.hpp"
 
 #include <iostream>
 using namespace std;
@@ -30,7 +31,8 @@ public:
 
   void eliminer(int);
 
-  void ask(Action&, int, int request=0);
+  void ask(CardAction&, int, int request=0);
+  void ask(Question&, int, int request=0);
 
   void addTo(int, Card&);
   void add(Card&);

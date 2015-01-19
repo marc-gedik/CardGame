@@ -45,7 +45,12 @@ void Players::eliminer(int player){
   nbPlayers--;
 }
 
-void Players::ask(Action& action, int what, int request){
+void Players::ask(CardAction& action, int what, int request){
+  cout << "Player " << actual << " : ";
+  players[actual]->ask(action, what, request);
+}
+
+void Players::ask(Question& action, int what, int request){
   cout << "Player " << actual << " : ";
   players[actual]->ask(action, what, request);
 }

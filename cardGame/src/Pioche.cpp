@@ -7,11 +7,11 @@ Pioche::Pioche(CardContainer cards){
     c.flip();
     pioche.push(&c);
   }
-  
 }
 
 Card& Pioche::draw(){
   Card* tmp = pioche.top();
+  tmp->flip();
   pioche.pop();
   return *tmp;
 }

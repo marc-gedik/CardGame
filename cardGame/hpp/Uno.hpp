@@ -10,10 +10,16 @@ private:
   virtual int cardsPerPlayer(int);
   virtual void initPlayersHand() ;
   virtual bool isFinished();
-  void testSameRankOrColor(Action a);
+  void testSameRankOrColor();
   virtual void printHeader();
   virtual void play();
 
+  bool isWhat(int);
+  bool isPlusTwo();
+  bool isSkip();
+  bool isReverse();
+  bool isJoker();
+  bool isSuperJoker();
 
 public:
   Uno(int nbPlayers){

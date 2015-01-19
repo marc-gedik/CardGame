@@ -41,7 +41,7 @@ void Scopa::printHeader(){
 }
 
 void Scopa::oneAction(){
-  Action action;
+  CardAction action;
   action.setTo(*discardPiles, CardContainer());
   players.ask(action, Movement::M_ONE);
 
