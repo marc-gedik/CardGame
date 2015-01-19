@@ -1,6 +1,7 @@
 #include "Players.hpp"
 
 #include "Human.hpp"
+#include "IA.hpp"
 
 Players::Players(int n, bool humans, int ord)
   : nbPlayers(n), actual(0), order(ord){
@@ -10,7 +11,8 @@ Players::Players(int n, bool humans, int ord)
   for(int i = 1; i < n; i++)
     if(humans)
       players[i] = new Human();
-  // else
+    else
+      players[i] = new IA();
 }
 
 Player& Players::next(){

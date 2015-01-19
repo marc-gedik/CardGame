@@ -32,7 +32,12 @@ int main(){
   cin >> query;
   Movement m2(query, Movement::M_ONE);
 
-  gameFactory.createGame(m1, m2)->run();
+  cout << "Jouer avec une IA ?" << endl;
+  cout << "\t1. Oui\n\t_. Non" << endl;
+  cin >> query;
+  Movement m3(query, Movement::M_ONE);
+
+  gameFactory.createGame(m1, m2, m3)->run();
 
   return 0;
 }

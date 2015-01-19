@@ -17,7 +17,7 @@ private:
   int order;
 public:
   Players() {}
-  Players(int, bool humans = true, int ord = 1);
+  Players(int, bool humans, int ord = 1);
   Player& next();
   Player& getActualPlayer();
 

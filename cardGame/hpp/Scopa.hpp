@@ -18,8 +18,8 @@ private:
 
 
 public:
-  Scopa(int nbPlayers){
-    initGame("It", nbPlayers, 1, 1);
+  Scopa(int nbPlayers, bool ia){
+    initGame("It", nbPlayers, 1, 1, ia);
   }
 };
 

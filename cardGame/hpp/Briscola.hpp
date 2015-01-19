@@ -22,9 +22,9 @@ private:
   SameOrTrumpSettings settings;
   Card *last;
 public:
-  Briscola(int nbPlayers){
+  Briscola(int nbPlayers, bool ia){
     int nbDiscardPile = nbPlayers;
-    initGame("It", nbPlayers, 1, nbDiscardPile);
+    initGame("It", nbPlayers, 1, nbDiscardPile, ia);
     initSettings();
   }
 };

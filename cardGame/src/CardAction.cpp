@@ -43,7 +43,8 @@ void CardAction::flip(){
     moving = true;
     movingCards = from->remove(movement);
   }
-  
+  for(int i = 0; i < movingCards.getSize(); i++)
+    movingCards.getElement(i).flip();
 }
 
 CardContainer& CardAction::getFromCards(){

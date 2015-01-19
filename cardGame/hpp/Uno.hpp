@@ -22,10 +22,10 @@ private:
   bool isSuperJoker();
 
 public:
-  Uno(int nbPlayers){
+  Uno(int nbPlayers, bool ia){
     int nbDiscardPile=1;
     int nbDeck=1;
-    initGame("Uno", nbPlayers, nbDeck, nbDiscardPile);
+    initGame("Uno", nbPlayers, nbDeck, nbDiscardPile, ia);
   }
 };
 

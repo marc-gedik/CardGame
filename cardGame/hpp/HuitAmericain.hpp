@@ -15,11 +15,11 @@ private:
 
 
 public:
-  HuitAmericain(int nbPlayers){
+  HuitAmericain(int nbPlayers, bool ia){
     cout<<"Jouons aux 8 Americain"<<endl;
     int nbDiscardPile=1;
     int nbDeck=1;
-    initGame("Fr", nbPlayers, nbDeck, nbDiscardPile);
+    initGame("Fr", nbPlayers, nbDeck, nbDiscardPile, ia);
     cout <<"Jeu uno initialise"<<endl;
 
   }

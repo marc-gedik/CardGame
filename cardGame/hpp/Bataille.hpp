@@ -19,8 +19,8 @@ private:
   void checkBataille();
 
 public:
-  Bataille(int nbPlayers){
-    initGame("Fr", nbPlayers, 1, nbPlayers);
+  Bataille(int nbPlayers, bool ia){
+    initGame("Fr", nbPlayers, 1, nbPlayers, ia);
   }
 };
 

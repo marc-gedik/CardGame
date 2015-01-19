@@ -4,17 +4,14 @@
 
 using namespace std;
 
-void Game::initGame(string deckType, int nbPlayer, int nbPaquet =1, int nbDiscardPiles =1){
+void Game::initGame(string deckType, int nbPlayer, int nbPaquet, int nbDiscardPiles, bool ia){
   DeckFactory deckFactory;
 
   checkNumberOfPlayers(nbPlayer);
-  players = Players(nbPlayer);
+  players = Players(nbPlayer, ia);
   discardPiles = new DiscardPile [nbDiscardPiles];
   deck = deckFactory.createDeck(deckType, nbPaquet);
-  cout<< "deck cree"<<endl;
   initPlayersHand();
-  cout<< "mains des joueurs creee"<<endl;
-    
 }
 
 void Game::run(){

@@ -22,7 +22,7 @@ protected:
   virtual void play() = 0;
 
   void createDeck(std::string, int);
-  void initGame(std::string, int, int, int);
+  void initGame(std::string, int, int, int, bool);
 
 public:
   void run();
