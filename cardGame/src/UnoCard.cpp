@@ -28,10 +28,10 @@ namespace uno {
 
   std::ostream& operator<<(std::ostream& os, const UnoSuit& suit){
     switch(suit){
-    case Blue  	: return os << "\xE2\x99\xA5";
-    case Green	: return os << "\xE2\x99\xA6";
-    case Yellow : return os << "\xE2\x99\xA3";
-    case Red  	: return os << "\xE2\x99\xA0";
+    case Blue  	: return os << "B";
+    case Green	: return os << "G";
+    case Yellow : return os << "Y";
+    case Red  	: return os << "R";
     case NoColor: return os << "~";
     default     : return os << "_";
     }
