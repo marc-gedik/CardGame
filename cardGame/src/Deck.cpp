@@ -13,11 +13,13 @@ Deck::Deck(int nbrDeck, CardContainer container){
 #include <iostream>
 Deck::~Deck(){
   std::cout << "Deck detruit" << std::endl;
+  for(int i = 0; i < nbCards; i++)
+    delete cards[i];
   delete [] cards;
 }
 
 Card& Deck::deal(){
-    return *cards[--nbCards];
+  return *cards[--nbCards];
 }
 
 void Deck::shuffle(){

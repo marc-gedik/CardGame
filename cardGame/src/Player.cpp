@@ -20,6 +20,10 @@ bool Player::emptyHand(){
   return hand.isEmpty();
 }
 
+CardContainer Player::getDiscardPile(){
+  return discardPile.removeAll();;
+}
+
 void Player::incrementScore(int n){
   score += n;
 }

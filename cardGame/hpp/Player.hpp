@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "DiscardPile.hpp"
+#include "CardContainer.hpp"
 
 class Player {
 protected:
@@ -27,6 +28,7 @@ public:
   void incrementScore(int);
   bool emptyHand();
 
+  CardContainer getDiscardPile();
   int getScore();
   std::string getName();
 };

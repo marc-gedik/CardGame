@@ -14,6 +14,9 @@ public:
   CardContainer(Card**, int);
   CardContainer(Card&);
 
+
+  ~CardContainer();
+
   int getSize() const;
 
   Card& getElement(int i) const;

@@ -66,7 +66,7 @@ void Scopa::oneAction(){
 
   try{
     action.countMovingCards(1);
-    CardContainer cards = action.getFromCards();
+    CardContainer& cards = action.getFromCards();
     if(discardPiles->contains(cards)){
       players.discardTo(discardPiles->remove(cards));
       players.discardTo(cards);
@@ -87,6 +87,8 @@ void Scopa::play(){
     do{
       cout << "\nTable : " <<  *discardPiles << endl;
       oneAction();
+      if(discardPiles->isEmpty())
+	cout << "Scopa!" << endl;
       players.next();
     }
     while (players.getActualPlayerId() != 0);

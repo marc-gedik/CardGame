@@ -43,6 +43,10 @@ public:
 
   bool emptyHand(int);
 
+  CardContainer getDiscardPileOf(int);
+
+  int getScoreOf(int);
+  void incrementScoreOf(int, int);
 };
 
 #endif

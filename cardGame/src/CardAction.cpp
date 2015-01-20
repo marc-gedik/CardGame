@@ -93,9 +93,6 @@ bool CardAction::sameRank(){
   return true;
 }
 
-
-
-
 bool CardAction::sameColor(int color){
   if(!moving){
     moving = true;

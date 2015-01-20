@@ -22,8 +22,9 @@ public:
   virtual void add(Card &x);
   virtual void add(const CardContainer& c);
 
-  bool contains(CardContainer);
-  CardContainer remove(CardContainer);
+  bool isEmpty();
+  bool contains(CardContainer&);
+  CardContainer remove(CardContainer&);
 
   CardContainer removeAll();
 

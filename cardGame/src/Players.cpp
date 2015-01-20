@@ -81,3 +81,15 @@ void Players::discardTo(CardContainer cards){
 bool Players::emptyHand(int i){
   return players[i]->emptyHand();
 }
+
+CardContainer Players::getDiscardPileOf(int i){
+  return players[i]->getDiscardPile();
+}
+
+int Players::getScoreOf(int i){
+  return players[i]->getScore();
+}
+
+void Players::incrementScoreOf(int i, int score){
+  players[i]->incrementScore(score);
+}

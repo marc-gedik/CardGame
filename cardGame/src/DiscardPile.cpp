@@ -22,36 +22,40 @@ CardContainer DiscardPile::removeAll(){
   return CardContainer(tabCard, size);
 }
 
-bool DiscardPile::contains(CardContainer cards){
-  if(cards.getSize() == 1){
-    Card& c = cards.getElement(0);
+bool DiscardPile::isEmpty(){
+  return discardPile.size() == 0;
+}
 
-    int size = discardPile.size();
-    list<Card*>::iterator it = discardPile.begin();
+bool DiscardPile::contains(CardContainer& cards){
+  int val = 0;
+  for(int i = 0; i < cards.getSize(); i++)
+    val += cards.getElement(i).getRank();
 
-    for(int i = 0; i < size; i++)
-      if (**it == c)
-	return true;
-  }
+  int size = discardPile.size();
+  list<Card*>::iterator iti = discardPile.begin();
+
+  for(int i = 0; i < size; iti++, i++)
+    if ((**iti).getRank() == val)
+      return true;
+
   return false;
 }
 
-CardContainer DiscardPile::remove(CardContainer cards){
-  if(cards.getSize() == 1){
-    Card& c = cards.getElement(0);
-    int size = discardPile.size();
-    list<Card*>::iterator it = discardPile.begin();
+CardContainer DiscardPile::remove(CardContainer& cards){
+  int val = 0;
+  for(int i = 0; i < cards.getSize(); i++)
+    val += cards.getElement(i).getRank();
 
-    for(int i = 0; i < size; it++,i++)
-      if (**it == c){
-	Card* card = *it;
-	discardPile.erase(it);
-	return CardContainer(*card);
-      }
-    return cards;
-  }
-  else
-    throw "Not needed";
+  int size = discardPile.size();
+  list<Card*>::iterator it = discardPile.begin();
+
+  for(int i = 0; i < size; it++,i++)
+    if ((**it).getRank() == val){
+      Card* card = *it;
+      discardPile.erase(it);
+      return CardContainer(*card);
+    }
+  return cards;
 }
 
 Card& DiscardPile::look(){

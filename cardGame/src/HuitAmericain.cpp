@@ -85,7 +85,7 @@ void HuitAmericain::testSameRankOrColor(){
   }
   else{
     if(a.sameRank(8) ){
-      Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
+      Question question("Choisir une couleur: \n0.Heart\n1.Diamond\n2.Club\n3.Spade");
       players.ask(question, 0);
       if(question.getReponse()>=0 && question.getReponse()<=3)
 	colorOfPile = question.getReponse();
@@ -96,43 +96,35 @@ void HuitAmericain::testSameRankOrColor(){
       colorOfPile=  (discardPiles->look()).getSuit();
       players.next();
     }
-    else
+    else{
       a.reset();
+      testSameRankOrColor();
+    }
   }
 }
 
 void HuitAmericain::play(){
   printHeader();
   cout<<"\nTable : "<<*discardPiles<<endl;
- if(isTen()){
-   testSameRankOrColor();
-   testSameRankOrColor();
-   players.next();
- }
-  if(isJack()){
+  if(isTen()){
+    testSameRankOrColor();
+    testSameRankOrColor();
+    players.next();
+  }
+  else if(isJack()){
     players.reverseOrder();
     players.next();
   }
-  if(isSeven()){
+  else if(isSeven()){
     players.next();
   }
-
-  if(isQueen()){
-    players.add(pioche->draw());
-    players.add(pioche->draw());
-    players.add(pioche->draw());
-    players.next();
-    testSameRankOrColor();   
-  }
-  
   else
     if(isJoker()){
       cout << "Vous piochez 2 fois" << endl;
-       players.add(pioche->draw());
-       players.add(pioche->draw());
-       
-       players.next();
-       testSameRankOrColor();   
+      players.add(pioche->draw());
+      players.add(pioche->draw());
+      players.next();
+      testSameRankOrColor();
     }
     else
       testSameRankOrColor();

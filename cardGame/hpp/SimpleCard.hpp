@@ -18,7 +18,7 @@ public:
   SimpleCard() {}
   SimpleCard(Suit s, Rank r, bool hide = false)
     : suit(s), rank(r), hidden(hide) {}
-
+  virtual ~SimpleCard(){cout << "carte detruit" << endl; }
   virtual Card* clone() const { return new SimpleCard(*this); }
 
   virtual int getRank() const { return rank; }

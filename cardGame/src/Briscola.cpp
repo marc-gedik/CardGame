@@ -13,7 +13,18 @@ int  Briscola::cardsPerPlayer(int){
 }
 
 void Briscola::theWinnerIs(){
-  //TODO
+  for(int i = 0; i < players.getNbPlayers(); i++){
+    CardContainer cards = players.getDiscardPileOf(i);
+    for(int j = 0; j < cards.getSize(); j++)
+      players.incrementScoreOf(i, scores.getScore(cards.getElement(i).getRank()));
+  }
+
+  int iBest = 0;
+  for(int i = 1; i < players.getNbPlayers(); i++)
+    if(players.getScoreOf(iBest) < players.getScoreOf(i))
+      iBest = i;
+
+  cout << "Player " << iBest << " win" << endl;
 }
 
 void Briscola::initScores(){

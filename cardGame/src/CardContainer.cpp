@@ -13,6 +13,8 @@ CardContainer::CardContainer(Card& x){
   cards[0] = &x;
 }
 
+CardContainer::~CardContainer(){}
+
 int CardContainer::getSize() const {
   return size;
 }
