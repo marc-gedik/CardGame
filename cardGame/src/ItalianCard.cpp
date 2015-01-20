@@ -24,10 +24,10 @@ namespace it{
 
   std::ostream& operator<<(std::ostream& os, const ItalianSuit& suit){
     switch(suit){
-    case Spade  : return os << "\xE2\x99\xA0";
-    case Bastoni: return os << "\xE2\x99\xA3";
-    case Denari : return os << "\xE2\x99\xA6";
-    case Coppe  : return os << "\xE2\x99\xA5";
+    case Spade  : return os << "S";
+    case Bastoni: return os << "B";
+    case Denari : return os << "D";
+    case Coppe  : return os << "Co";
     default     : return os << "_";
     }
   }
