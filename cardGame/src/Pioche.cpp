@@ -15,4 +15,3 @@ Card& Pioche::draw(){
   pioche.pop();
   return *tmp;
 }
-b
