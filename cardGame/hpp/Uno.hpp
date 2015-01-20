@@ -15,6 +15,8 @@ private:
   virtual void play();
   virtual void theWinnerIs();
 
+  void askColor();
+
   bool isWhat(int);
   bool isPlusTwo();
   bool isSkip();

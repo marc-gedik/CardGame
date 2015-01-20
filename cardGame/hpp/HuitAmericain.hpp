@@ -15,6 +15,7 @@ private:
   virtual void theWinnerIs();
 
   void testSameRankOrColor();
+  void askColor();
 
   bool isWhat(int);
   bool isQueen();

@@ -40,6 +40,8 @@ void HuitAmericain::initPlayersHand(){
     }
   pioche= new Pioche(deck->removeAll());
   discardPiles->add(pioche->draw());
+
+  colorOfPile = (discardPiles->look()).getSuit();
 }
 
 
@@ -48,7 +50,9 @@ bool HuitAmericain::isWhat(int n){
 }
 
 void HuitAmericain::theWinnerIs(){
-  //TODO
+  for(int i = 0; i < players.getNbPlayers(); i++)
+    if(players.emptyHand(i))
+      cout << "The winner is " << i << endl;
 }
 
 bool HuitAmericain::isQueen (){
@@ -72,6 +76,15 @@ bool HuitAmericain::isJoker (){
   return b;
 }
 
+void HuitAmericain::askColor(){
+  Question question("Choisir une couleur: \n0.Heart\n1.Diamond\n2.Club\n3.Spade");
+  players.ask(question, 0);
+  if(question.getReponse()>=0 && question.getReponse()<=3)
+    colorOfPile = question.getReponse();
+  else
+    askColor();
+
+}
 
 void HuitAmericain::testSameRankOrColor(){
   CardAction a;
@@ -84,11 +97,8 @@ void HuitAmericain::testSameRankOrColor(){
     players.next();
   }
   else{
-    if(a.sameRank(8) ){
-      Question question("Choisir une couleur: \n0.Heart\n1.Diamond\n2.Club\n3.Spade");
-      players.ask(question, 0);
-      if(question.getReponse()>=0 && question.getReponse()<=3)
-	colorOfPile = question.getReponse();
+    if(a.sameRank(fr::Eight) ){
+      askColor();
       a.apply();
     }
     else if(a.sameRank() || a.sameColor(colorOfPile)){
@@ -101,22 +111,21 @@ void HuitAmericain::testSameRankOrColor(){
       testSameRankOrColor();
     }
   }
+  if(isTen())
+    testSameRankOrColor();
 }
 
 void HuitAmericain::play(){
   printHeader();
   cout<<"\nTable : "<<*discardPiles<<endl;
-  if(isTen()){
-    testSameRankOrColor();
-    testSameRankOrColor();
-    players.next();
-  }
-  else if(isJack()){
+  if(isJack()){
     players.reverseOrder();
     players.next();
+    testSameRankOrColor();
   }
   else if(isSeven()){
     players.next();
+    testSameRankOrColor();
   }
   else
     if(isJoker()){

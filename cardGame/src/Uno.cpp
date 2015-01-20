@@ -61,6 +61,15 @@ bool Uno::isSkip      (){ return isWhat(uno::Skip); 	  }
 bool Uno::isJoker     (){ return isWhat(uno::Joker);      }
 bool Uno::isSuperJoker(){ return isWhat(uno::SuperJoker); }
 
+void Uno::askColor(){
+  Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
+  players.ask(question, 0);
+  if(question.getReponse()>=0 && question.getReponse()<=3)
+    colorOfPile = question.getReponse();
+  else
+    askColor();
+}
+
 void Uno::testSameRankOrColor(){
   CardAction a;
   a.setTo(*discardPiles, CardContainer());
@@ -73,20 +82,19 @@ void Uno::testSameRankOrColor(){
   }
   else{
     if(a.sameColor(4)){
-      Question question("Choisir une couleur: \n0.Blue\n1.Green\n2.Yellow\n3.Red");
-      players.ask(question, 0);
-      if(question.getReponse()>=0 && question.getReponse()<=3)
-	colorOfPile = question.getReponse();
+      askColor();
       a.apply();
+      players.next();
     }
     else if(a.sameRank() || a.sameColor(colorOfPile)){
       a.apply();
-
       colorOfPile=  (discardPiles->look()).getSuit();
       players.next();
     }
-    else
+    else{
       a.reset();
+      testSameRankOrColor();
+    }
   }
 }
 
